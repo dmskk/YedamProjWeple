@@ -3,6 +3,7 @@ package com.dev.service.review;
 import java.util.List;
 
 import com.dev.dao.BoardDAO;
+import com.dev.dao.BuyDAO;
 import com.dev.vo.Board;
 import com.dev.vo.Criteria;
 import com.dev.vo.ProdReview;
@@ -12,6 +13,8 @@ public class ReviewService {
 	private static ReviewService instance = new ReviewService();
 	
 	BoardDAO dao = new BoardDAO();
+	BuyDAO bdao = BuyDAO.getInstance();
+	
 	
 	private ReviewService() {}
 	
@@ -20,9 +23,9 @@ public class ReviewService {
 	}
 	
 	//리뷰등록
-	public void addReivew(ReviewInfo rvo) {
+	public void addReivew(ReviewInfo rvo, int orderNum) {
 		dao.addReivew(rvo);
-//		dao.countStar(rvo);
+		bdao.updateReview(orderNum, rvo.getProdId());
 	}
 	//리뷰 리스트 출력
 	
@@ -73,7 +76,10 @@ public class ReviewService {
 	}
 	
 	
-	
+	// 내가 쓴 상품 리뷰
+	public Board selectProdReview(int orderNum, int prodId) {
+		return dao.selectProdReview(orderNum, prodId);
+	}
 	
 	
 }

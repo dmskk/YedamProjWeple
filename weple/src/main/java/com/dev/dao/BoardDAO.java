@@ -370,5 +370,35 @@ public class BoardDAO extends DAO {
 		return list;
 	}
 	
-	
+	/* 내가 쓴 상품 리뷰
+	 */
+	public Board selectProdReview(int orderNum, int prodId) {
+		Board bo = new Board();
+		try {
+			connect();
+			String sql = "select * from boards where order_num=? and prod_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, orderNum);
+			pstmt.setInt(2, prodId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bo.setBoardType(rs.getInt("board_type"));
+				bo.setTitle(rs.getString("title"));
+				bo.setBoardContent(rs.getString("board_content"));
+				bo.setWriter(rs.getString("writer"));
+				bo.setWriteDate(rs.getString("write_date"));
+				bo.setBno(rs.getInt("bno"));
+				bo.setProdId(prodId);
+				bo.setIsHandled(rs.getInt("in_handled"));
+				bo.setRepsComment(rs.getString("reps_comment"));
+				bo.setOrderNum(rs.getInt("order_num"));
+				bo.setCNT(rs.getInt("cnt"));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return bo;
+	}
 }

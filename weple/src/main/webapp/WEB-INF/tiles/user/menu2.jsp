@@ -25,13 +25,17 @@
 			class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 				상품 문의 </a></li>
 		
-		<li class="bor18"><a href="myListPaging.do"
+		<li class="bor18"><a href="myListPaging.do?pageNum=1&amount=10"
 			class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 				마이 리뷰 </a></li>
 
 		<li class="bor18"><a href="userInfoUpdateForm.do"
 			class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 				회원정보 수정 </a></li>
+				
+		<li class="bor18"><a href="userDeleteForm.do"
+			class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+				회원탈퇴 </a></li>
 				
 			
 	</ul>

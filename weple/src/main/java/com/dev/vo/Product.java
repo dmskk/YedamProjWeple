@@ -25,4 +25,5 @@ public class Product implements Serializable {
 	private int totaljjim;
 	private double ratio;
 	private int star;
+	private double avgStar;
 }

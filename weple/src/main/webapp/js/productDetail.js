@@ -5,23 +5,33 @@
  
  /*공동구매 버튼을 눌렀을 때*/
  function addCart(num) {
-	let amount = document.querySelector('.mtext-104.cl3.txt-center.num-product').value;
-	let buyType = num;
 	console.log(num);
-	fetch('insertCart.do', {
-		method: 'post',
-		headers: {'Content-type': 'application/x-www-form-urlencoded'},
-		body: 'amount='+amount+'&isShare='+buyType
-	})
-	.then(result => result.text())
-	.then(function() {
+	if (num === 3) {
 		swal({
-				  title: "장바구니 추가 완료!",
-				  icon: "success",
-				  button: "닫기",
-				});
-		window.location.reload();
-	})
+		  title: "로그인 후 이용 가능합니다.",
+		  icon: "info",
+		  button: "닫기",
+		});
+		return false;
+	} else {
+		let amount = document.querySelector('.mtext-104.cl3.txt-center.num-product').value;
+		let buyType = num;
+		console.log(num);
+		fetch('insertCart.do', {
+			method: 'post',
+			headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			body: 'amount='+amount+'&isShare='+buyType
+		})
+		.then(result => result.text())
+		.then(function() {
+			swal({
+			  title: "장바구니 추가 완료!",
+			  icon: "success",
+			  button: "닫기",
+			});
+		})
+		return false;
+	}
 	
 }
 

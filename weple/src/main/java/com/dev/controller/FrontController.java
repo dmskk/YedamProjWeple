@@ -31,13 +31,11 @@ import com.dev.controller.mypage.UserUpdateController;
 import com.dev.controller.mypage.addressChangeController;
 import com.dev.controller.mypage.addressDeleteController;
 import com.dev.controller.mypage.addressDeleteFormController;
-import com.dev.controller.mypage.addressListController;
 import com.dev.controller.mypage.addressListDefaultController;
 
 import com.dev.controller.mypage.addressListFormController;
 import com.dev.controller.mypage.addressOutController;
 import com.dev.controller.mypage.addressUpdateController;
-import com.dev.controller.mypage.addressUpdateFormController;
 import com.dev.controller.notice.DeleteCommentsController;
 import com.dev.controller.notice.ShowCommentsController;
 import com.dev.controller.notice.ShowNoticeBoardController;
@@ -63,6 +61,7 @@ import com.dev.controller.review.DeleteReviewController;
 import com.dev.controller.review.InsertResultListController;
 import com.dev.controller.review.InsertReviewController;
 import com.dev.controller.review.MyListPagingController;
+import com.dev.controller.review.MyProdReviewController;
 import com.dev.controller.review.RealTimeReviewController;
 import com.dev.controller.review.ReviewListPagingController;
 import com.dev.controller.user.UserInsertController;
@@ -78,6 +77,7 @@ import com.dev.controller.welcome.WelcomeController;
 
 
 
+@SuppressWarnings("serial")
 public class FrontController extends HttpServlet {
 	String enc;
 	Map<String, Controller> mappings;
@@ -134,7 +134,7 @@ public class FrontController extends HttpServlet {
 		mappings.put("/countContent.do", new CountContentController());
 		mappings.put("/reviewListPaging.do", new ReviewListPagingController());//paging 리뷰리스트
 		mappings.put("/myListPaging.do", new MyListPagingController());//paging 내리뷰 리스트
-		
+		mappings.put("/myProdReview.do", new MyProdReviewController()); //주문내역에서 작성한 리뷰 보기
 		
 		
 		mappings.put("/cart.do", new CartController()); // cart화면보여주는 것

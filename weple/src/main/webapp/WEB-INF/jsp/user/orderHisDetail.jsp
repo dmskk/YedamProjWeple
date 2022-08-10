@@ -24,7 +24,7 @@
 			<th style="text-align: center;">개별가격</th>
 			<th style="text-align: center;">수량</th>
 			<th style="text-align: center;">금액</th>
-			<th style="text-align: center;">리뷰</th>
+			<th style="text-align: center;">상태</th>
 		</tr>
 		<c:forEach var="item" items="${orderHisDetailList }">
 			<c:if test="${item.isShare eq 1 }">
@@ -40,13 +40,21 @@
 					<td style="text-align: center;">${item.prodPrice}원</td>
 					<td style="text-align: center;">${item.buyAmount }개</td>
 					<td style="text-align: center;">${item.totalPrice }원</td>
-					<td>
-						<a class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"
-							href="#" 
-							style="text-align: center;">리뷰달기</a>
+					<td style="text-align: center;">
+						<c:choose>
+							<c:when test="${item.isDelivery == 0 && item.isCompleted == 0 }">배송 준비 중</c:when>
+							<c:when test="${item.isDelivery == 1 && item.isCompleted == 0 }">배송 중</c:when>
+							<c:when test="${item.isDelivery == 0 && item.isCompleted == 1 && item.isReview == 0 }">
+								<a class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"
+									href="addReview.do?orderNum=<%=request.getParameter("orderNum") %>&prodId=${item.prodId }">리뷰 작성하기</a>
+							</c:when>
+							<c:otherwise>
+								<a class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"
+									href="myProdReview.do?orderNum=<%=request.getParameter("orderNum") %>&prodId=${item.prodId }">리뷰 작성완료</a>
+							</c:otherwise>
+						</c:choose>
 					</td>
 					<!--  /reviewForm.jsp(tile로경로설정) -->
-					</c:if>
 				</tr>
 			</c:if>
 		</c:forEach>
@@ -63,7 +71,7 @@
 			<th style="text-align: center;">개별가격</th>
 			<th style="text-align: center;">수량</th>
 			<th style="text-align: center;">금액</th>
-			<th style="text-align: center;">리뷰</th>
+			<th style="text-align: center;">상태</th>
 		</tr>
 		<c:forEach var="item" items="${orderHisDetailList }">
 			<c:if test="${item.isShare eq 0 }">
@@ -79,17 +87,17 @@
 					<td style="text-align: center;">${item.prodPrice}원</td>
 					<td style="text-align: center;">${item.buyAmount }개</td>
 					<td style="text-align: center;">${item.totalPrice }원</td>
-					<td>
+					<td style="text-align: center;">
 						<c:choose>
-							<c:when test="${item.isReview == 0 }">
+							<c:when test="${item.isDelivery == 0 && item.isCompleted == 0 }">배송 준비 중</c:when>
+							<c:when test="${item.isDelivery == 1 && item.isCompleted == 0 }">배송 중</c:when>
+							<c:when test="${item.isDelivery == 0 && item.isCompleted == 1 && item.isReview == 0 }">
 								<a class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"
-									href="#" 
-									style="text-align: center;">리뷰 작성하기</a>
+									href="addReview.do?orderNum=<%=request.getParameter("orderNum") %>&prodId=${item.prodId }">리뷰 작성하기</a>
 							</c:when>
 							<c:otherwise>
 								<a class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"
-									href="#" 
-									style="text-align: center;">리뷰 작성완료</a>
+									href="myProdReview.do?orderNum=<%=request.getParameter("orderNum") %>&prodId=${item.prodId }">리뷰 작성완료</a>
 							</c:otherwise>
 						</c:choose>
 					</td>

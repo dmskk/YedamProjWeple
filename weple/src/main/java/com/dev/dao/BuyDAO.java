@@ -240,7 +240,8 @@ public class BuyDAO extends DAO {
 			List<OrderHisDetail> orderProdList = new ArrayList<>();
 			try {
 				connect();
-				String sql = "select p.prod_name, b.buy_amount, b.is_share, p.prod_price, b.buy_amount *  p.prod_price as total_price, p.img_url, p.prod_id, b.is_review, b.is_completed "
+				String sql = "select p.prod_name, b.buy_amount, b.is_share, p.prod_price, b.buy_amount *  p.prod_price as total_price, "
+						+ "p.img_url, p.prod_id, b.is_review, b.is_completed, b.is_delivery "
 						+ "from (select * from buy_process where user_id = ? and order_num = ?) b join products p "
 						+ "on b.prod_id = p.prod_id";
 				pstmt = conn.prepareStatement(sql);
@@ -260,6 +261,7 @@ public class BuyDAO extends DAO {
 					orderHistoryDetail.setProdId(rs.getInt("prod_id"));
 					orderHistoryDetail.setOrderNum(orderNum);
 					orderHistoryDetail.setIsReview(rs.getInt("is_review"));
+					orderHistoryDetail.setIsDelivery(rs.getInt("is_delivery"));
 
 					orderProdList.add(orderHistoryDetail);
 				}
@@ -269,5 +271,21 @@ public class BuyDAO extends DAO {
 				disconnect();
 			}
 			return orderProdList;
+		}
+		
+		// 리뷰 작성
+		public void updateReview(int orderNum, int prodId) {
+			try {
+				connect();
+				String sql = "update buy_process set is_review=1 where order_num = ? and prod_id = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, orderNum);
+				pstmt.setInt(2, prodId);
+				pstmt.executeUpdate();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
 		}
 }
