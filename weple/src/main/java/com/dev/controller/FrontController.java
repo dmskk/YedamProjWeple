@@ -27,15 +27,17 @@ import com.dev.controller.mypage.MyPageController;
 import com.dev.controller.mypage.OrderHistoryController;
 import com.dev.controller.mypage.ProdQnAController;
 import com.dev.controller.mypage.UserUpdateController;
-import com.dev.controller.mypage.addressListController;
 import com.dev.controller.mypage.addressListFormController;
 import com.dev.controller.mypage.addressUpdateController;
 import com.dev.controller.mypage.addressUpdateFormController;
+import com.dev.controller.notice.DeleteCommentsController;
+import com.dev.controller.notice.ShowCommentsController;
 import com.dev.controller.notice.ShowNoticeBoardController;
 import com.dev.controller.notice.ShowNoticeDetailController;
-import com.dev.controller.order.selectOrderDetailController;
+import com.dev.controller.notice.UpdateCommentsController;
 import com.dev.controller.order.ShowPayFormController;
 import com.dev.controller.order.insertOrderController;
+import com.dev.controller.order.selectOrderDetailController;
 import com.dev.controller.product.CatgDispController;
 import com.dev.controller.product.CatgProdListController;
 import com.dev.controller.product.NewerController;
@@ -161,7 +163,9 @@ public class FrontController extends HttpServlet {
 		// 공지사항게시판
 		mappings.put("/showNoticeBoard.do", new ShowNoticeBoardController()); // 공지사항게시판 전체목록
 		mappings.put("/showNoticeDetail.do", new ShowNoticeDetailController()); // 글 클릭했을때 보여줄 공지사항세부
-		
+		mappings.put("/showComments.do", new ShowCommentsController());
+		mappings.put("/deleteComments.do", new DeleteCommentsController());
+		mappings.put("/updateComments.do", new UpdateCommentsController());
 	}
 	
 	@Override

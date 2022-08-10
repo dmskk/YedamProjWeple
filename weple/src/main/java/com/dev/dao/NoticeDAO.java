@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.dev.common.DAO;
 import com.dev.vo.Board;
+import com.dev.vo.Comments;
 
 public class NoticeDAO extends DAO {
 	
@@ -78,6 +79,100 @@ public class NoticeDAO extends DAO {
 				System.out.println("cnt 1올라감");
 			} else {
 				System.out.println("cnt업로드 실패");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+	
+	// 글 번호(bno)에 맞는 댓글 조회해서 리스트에 담아서 전달해야한다.
+	public List<Comments> selectComments(int bno) {
+		List<Comments> list = new ArrayList<>();
+		try {
+			connect();
+			String sql = "select * from comments where bno = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Comments comments = new Comments();
+				comments.setBno(rs.getInt("bno"));
+				comments.setReple(rs.getString("reple"));
+				comments.setUserId(rs.getString("user_id"));
+				comments.setWriteDate(rs.getString("write_date"));
+				comments.setRepleNum(rs.getInt("reple_num"));
+				
+				list.add(comments);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	}
+	
+	// 댓글 수정
+	public void updateComments(Comments comments) {
+		try {
+			connect();
+			String sql = "update comments set reple = '' where bno = ? and reple_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, comments.getReple());
+			pstmt.setInt(2, comments.getBno());
+			pstmt.setInt(3, comments.getRepleNum());
+			
+			int r = pstmt.executeUpdate();
+			if (r > 0) {
+				System.out.println("댓글 업로드 완료");
+			} else {
+				System.out.println("댓글 업로드 실패");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+	
+	// 댓글 삭제
+	public void deleteComments(int bno, int repleNum) {
+		try {
+			connect();
+			String sql = "delete from comments where bno = ? and reple_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			pstmt.setInt(2, repleNum);
+			int r = pstmt.executeUpdate();
+			if (r > 0) {
+				System.out.println("댓글 삭제 완료");
+			} else {
+				System.out.println("댓글 삭제 실패");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+	
+	// 댓글 달기
+	public void insertComments(Comments comments) {
+		try {
+			connect();
+			String sql = "insert into comments (?, reple_num_seq.nextval, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, comments.getBno());
+			pstmt.setString(2, comments.getUserId());
+			pstmt.setString(3, comments.getReple());
+			pstmt.setString(4, comments.getWriteDate());
+			int r = pstmt.executeUpdate();
+			if (r > 0) {
+				System.out.println("댓글 등록 완료");
+			} else {
+				System.out.println("댓글 등록 실패");
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

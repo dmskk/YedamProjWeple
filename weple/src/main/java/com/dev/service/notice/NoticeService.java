@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dev.dao.NoticeDAO;
 import com.dev.vo.Board;
+import com.dev.vo.Comments;
 
 public class NoticeService {
 	// 싱글톤
@@ -36,4 +37,23 @@ public class NoticeService {
 		nDAO.updateCNT(bno, cnt);
 	}
 	
+	// 글 번호(bno)에 맞는 댓글 조회해서 리스트에 담아서 전달해야한다.
+	public List<Comments> selectComments(int bno) {
+		return nDAO.selectComments(bno);
+	}
+	
+	// 댓글 수정
+	public void updateComments(Comments comments) {
+		nDAO.updateComments(comments);
+	}
+	
+	// 댓글 삭제
+	public void deleteComments(int bno, int repleNum) {
+		nDAO.deleteComments(bno, repleNum);
+	}
+	
+	// 댓글 달기
+	public void insertComments(Comments comments) {
+		nDAO.insertComments(comments);
+	}
 }

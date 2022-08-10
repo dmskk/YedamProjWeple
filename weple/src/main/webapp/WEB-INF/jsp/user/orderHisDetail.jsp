@@ -37,8 +37,10 @@ tr, th, td {
 					<td>${item.buyAmount }</td>
 					<td>${item.prodPrice}</td>
 					<td>${item.totalPrice }</td>
-					<td><input type="button" id="reviewBtn" onclick="#" />리뷰달기</td>
+					<c:if test="${item.isCompleted eq 1}">
+					<td><input type="button" id="reviewBtn" onclick="#" value="리뷰달기"/></td>
 					<!--  /reviewForm.jsp(tile로경로설정) -->
+					</c:if>
 				</tr>
 			</c:if>
 		</c:forEach>
@@ -66,8 +68,10 @@ tr, th, td {
 					<td>${orderHisDetailList.buyAmount }</td>
 					<td>${orderHisDetailList.prodPrice}</td>
 					<td>${orderHisDetailList.totalPrice }</td>
-					<td><input type="button" id="reviewBtn" onclick="#" />리뷰달기</td>
-					<!-- /reviewForm.jsp(tiles로 경로설정) -->
+					<c:if test="${item.isCompleted eq 1}">
+					<td><input type="button" id="reviewBtn" onclick="#" value="리뷰달기"/></td>
+					<!--  /reviewForm.jsp(tile로경로설정) -->
+					</c:if>
 				</tr>
 			</c:if>
 		</c:forEach>

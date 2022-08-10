@@ -11,11 +11,14 @@ public class OrderHisDetail {
 	int isShare;
 	int totalPrice;
 	int prodPrice;
+	int isCompleted;
 	
 	@Override
 	public String toString() {
 		return "OrderHisDetail [prodName=" + prodName + ", buyAmount=" + buyAmount + ", isShare=" + isShare
-				+ ", totalPrice=" + totalPrice + ", prodPrice=" + prodPrice + "]";
+				+ ", totalPrice=" + totalPrice + ", prodPrice=" + prodPrice + ", isCompleted=" + isCompleted + "]";
 	}
+	
+
 }
 
