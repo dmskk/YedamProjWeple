@@ -3,7 +3,6 @@ package com.dev.controller.order;
 import java.io.IOException;
 import java.util.List;
 
-import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.dev.common.Utils;
 import com.dev.controller.Controller;
 import com.dev.service.buy.BuyService;
+import com.dev.vo.Buy;
 import com.dev.vo.OrderHisDetail;
 
 public class selectOrderDetailController implements Controller {
@@ -35,8 +35,11 @@ public class selectOrderDetailController implements Controller {
 		for (OrderHisDetail detail : orderHisDetailList) {
 			System.out.println(detail);
 		}
+		
+		
 		// 조회한 데이터 넘겨서 orderHistoryDetail.jsp로 넘기기
 		req.setAttribute("orderHisDetailList", orderHisDetailList);
+		
 		Utils.forward(req, resp, "user/orderHisDetail.tiles");
 		
 	}

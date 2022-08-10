@@ -13,10 +13,11 @@ public class OrderHisDetail {
 	int isShare;
 	int totalPrice;
 	int prodPrice;
+	int isCompleted;
 	String imgUrl;
 	int prodId;
 	int orderNum;
 	int isReview;
-	
+
 }
 

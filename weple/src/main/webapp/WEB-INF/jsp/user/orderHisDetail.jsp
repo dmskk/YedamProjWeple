@@ -46,6 +46,7 @@
 							style="text-align: center;">리뷰달기</a>
 					</td>
 					<!--  /reviewForm.jsp(tile로경로설정) -->
+					</c:if>
 				</tr>
 			</c:if>
 		</c:forEach>
