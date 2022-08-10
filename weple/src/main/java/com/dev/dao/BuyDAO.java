@@ -179,7 +179,7 @@ public class BuyDAO extends DAO {
 	}
 	
 	
-
+	//머지
 	// 결제 완료상품으로 바꾸기고 주문정보 들어오는 메소드
 	public void updateOrderComplete(Buy buy) {
 		try {

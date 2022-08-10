@@ -36,6 +36,7 @@ public class BuyService {
 		bDAO.insertIntoCart(cartProduct);
 	}
 	
+	// 머지
 	// buyVO를 넘겨서 buy_process를 결제완료상품으로, 주문번호 넣는 메소드
 	public void updateOrderComplete(Buy buy) {
 		bDAO.updateOrderComplete(buy);
