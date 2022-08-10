@@ -13,8 +13,7 @@ public class ShowPayFormController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Utils.forward(req, resp, "user/payForm.tiles");
-
+		Utils.forward(req, resp, "user/payForm.tiles"); //커밋돼라
 	}
 
 }
