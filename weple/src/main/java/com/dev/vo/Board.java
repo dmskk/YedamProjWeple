@@ -17,6 +17,8 @@ public class Board {
 	private int isHandled;
 	private String repsComment;
 	private int CNT;
+	private String imgUrl;
+	private String repsContent;
 	
 	@Override
 	public String toString() {

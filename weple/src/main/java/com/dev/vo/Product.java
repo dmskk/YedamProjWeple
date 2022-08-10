@@ -1,11 +1,13 @@
 package com.dev.vo;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Product {
+public class Product implements Serializable {
 	private int prodId;
 	private String imgUrl;
 	private String prodName;

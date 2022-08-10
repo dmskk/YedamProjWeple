@@ -13,6 +13,19 @@ public class UserService {
 	public static UserService getInstance() {
 		return instance;
 	}
+	//기본배송지 제외
+	public void outAddress(Addr vo) {
+		dao.otAddress(vo);
+	}
+	//기본배송지로 지정
+	public void changeAddress(Addr vo) {
+		dao.chAddress(vo);
+	}
+	
+	//기본!! 배송지조회
+	public List<Addr> addressListD(String userId) {
+		return dao.getAdrListD(userId);
+	}
 	//배송지조회
 	public List<Addr> addressList(String userId) {
 		return dao.getAdrList(userId);
@@ -21,6 +34,12 @@ public class UserService {
 	//배송지추가
 	public void modifyAddress(Addr vo) {
 		dao.updateAddress(vo);
+	}
+	
+	
+	//배송지삭제
+	public void dropAddress(Addr vo) {
+		dao.deleteAddress(vo);
 	}
 	
 	//아이디찾기

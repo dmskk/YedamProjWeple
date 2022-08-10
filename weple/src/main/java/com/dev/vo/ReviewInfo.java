@@ -1,11 +1,13 @@
 package com.dev.vo;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ReviewInfo {
+public class ReviewInfo implements Serializable{
 	
 	private int bno;
 	private int prodId;
@@ -15,5 +17,5 @@ public class ReviewInfo {
 	private String writeDate;
 	private int cnt;
 	private int rating;
-	
+	private String imgUrl;
 }

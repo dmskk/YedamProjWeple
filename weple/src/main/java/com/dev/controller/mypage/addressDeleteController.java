@@ -12,36 +12,36 @@ import com.dev.controller.Controller;
 import com.dev.service.user.UserService;
 import com.dev.vo.Addr;
 
-public class addressUpdateController implements Controller {
+public class addressDeleteController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-	
+		//HttpSession session = req.getSession();
+		
 		UserService service = UserService.getInstance();
 		
-		String id = (String) session.getAttribute("userId");
+		//String id = (String) session.getAttribute("userId");
 		String adn = req.getParameter("addr_name");
-		String pst = req.getParameter("post");
-		String ard1 = req.getParameter("address1");
-		String ard2 = req.getParameter("address2");
-		String ard3 = req.getParameter("address3");
-		
+		//String pst = req.getParameter("post");
+		//String ard1 = req.getParameter("address1");
+		//String ard2 = req.getParameter("address2");
+		//String ard3 = req.getParameter("address3");
 		Addr vo = new Addr();
-		vo.setUserId(id);
+		//vo.setUserId(id);
 		vo.setAddrName(adn);
-		vo.setZipCode(Integer.parseInt(pst));
-		vo.setAddr(ard1);
-		vo.setAddr2(ard3);
-		vo.setAddrDetail(ard2);
+		//vo.setZipCode(Integer.parseInt(pst));
+		//vo.setAddr(ard1);
+		//vo.setAddr2(ard3);
+		//vo.setAddrDetail(ard2);
+		System.out.println(adn);
 		
-		service.modifyAddress(vo);
+		service.dropAddress(vo);
 		
 		
 		req.setAttribute("user", vo);
 		
 		
-		Utils.forward(req, resp, "mypage.do");
+		Utils.forward(req, resp, "mypage.do");		
 	}
 
 }

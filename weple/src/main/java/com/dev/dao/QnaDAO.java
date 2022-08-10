@@ -97,9 +97,9 @@ public class QnaDAO extends DAO{
 
 			try {
 				
-				String sql = "select  title, board_type, prod_id, writer, write_date, board_content, bno, cnt, is_handled "
-						+ "from(select rownum rn, title, board_type, prod_id, writer, write_date, board_content, bno, cnt, is_handled "
-						+ "from(select  title, board_type, prod_id, writer, write_date, board_content, bno, cnt, is_handled "
+				String sql = "select  title, board_type, prod_id, writer, write_date, board_content, bno, cnt, is_handled, img_url, reps_comment "
+						+ "from(select rownum rn, title, board_type, prod_id, writer, write_date, board_content, bno, cnt, is_handled, img_url, reps_comment "
+						+ "from(select  title, board_type, prod_id, writer, write_date, board_content, bno, cnt, is_handled, img_url, reps_comment "
 						+ "from v_bo_plus_nm where  writer= '" + writer +  "' and board_type=4 order by write_date desc ) "
 						+ "where rownum <=?) " + "where rn>?";
 				
@@ -121,6 +121,8 @@ public class QnaDAO extends DAO{
 					vo.setBoardContent(rs.getString("board_content"));
 					vo.setCNT(rs.getInt("cnt"));
 					vo.setIsHandled(rs.getInt("is_handled"));
+					vo.setImgUrl(rs.getString("img_url"));
+					vo.setRepsComment(rs.getString("reps_comment"));
 
 					myQnaListPaging.add(vo);
 					
