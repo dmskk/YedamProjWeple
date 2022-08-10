@@ -74,10 +74,7 @@ public class insertOrderController implements Controller {
 			
 			orderPrice += totalPrice;
 		}
-		
-		for(Cart cart : cartList) {
-			System.out.println(cart);
-		}
+
 		
 		// 주문내역 목록 orders테이블에 넣기
 		// userId, orderNum(시퀀스), orderPrice, orderInfo, orderDate

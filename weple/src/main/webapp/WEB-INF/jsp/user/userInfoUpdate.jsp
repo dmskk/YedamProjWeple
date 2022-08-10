@@ -26,7 +26,7 @@ User userVO = service.getUserInfo(id);
 
 	<p class="stext-107 cl6 p-b-40">소중한 내 정보를 최신으로 관리하세요.</p>
 <form action="userInfoUpdate.do" id="updateForm" name="updateForm">
-	<table style="border: 1px;">
+	<table style="border: 1px;" class="table-shopping-cart">
 		<tr>
 			<td style="padding: 20px;">
 				아이디

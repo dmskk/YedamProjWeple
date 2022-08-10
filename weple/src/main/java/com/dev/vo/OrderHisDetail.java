@@ -2,20 +2,21 @@ package com.dev.vo;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class OrderHisDetail {
 	String prodName;
 	int buyAmount;
 	int isShare;
 	int totalPrice;
 	int prodPrice;
+	String imgUrl;
+	int prodId;
+	int orderNum;
+	int isReview;
 	
-	@Override
-	public String toString() {
-		return "OrderHisDetail [prodName=" + prodName + ", buyAmount=" + buyAmount + ", isShare=" + isShare
-				+ ", totalPrice=" + totalPrice + ", prodPrice=" + prodPrice + "]";
-	}
 }
 
