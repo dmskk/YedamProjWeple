@@ -22,14 +22,26 @@ public class ShowPayFormController implements Controller {
 		String userId = (String) session.getAttribute("userId");
 		
 		int totalPrice = 0;
+		int totalProdAmount = 0;
+		int totalBuyAmount = 0;
 		
 		List<Cart> list = service.showCart(userId);
+		if(session.getAttribute("cartList") != null) {
+			session.removeAttribute("cartList");
+			session.setAttribute("cartList", list);
+		} else {
+			session.setAttribute("cartList", list);
+		}
 		
 		for(Cart cart : list) {
 			totalPrice += cart.getTotalPrice();
+			totalBuyAmount += cart.getBuyAmount();
+			totalProdAmount += 1;
 		}
 		
 		req.setAttribute("totalPrice", totalPrice);
+		req.setAttribute("totalBuyAmount", totalBuyAmount);
+		req.setAttribute("totalProdAmount", totalProdAmount);
 		
 		Utils.forward(req, resp, "user/payForm.tiles"); //커밋돼라
 	}

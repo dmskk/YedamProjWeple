@@ -5,28 +5,25 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.dev.common.Utils;
 import com.dev.controller.Controller;
-import com.dev.vo.ReviewInfo;
+import com.dev.service.review.ReviewService;
+import com.dev.vo.Board;
 
-public class AddReviewController implements Controller {
+public class MyProdReviewController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		HttpSession session = req.getSession();
-				
-		int pId = Integer.parseInt(req.getParameter("prodId"));
 		int orderNum = Integer.parseInt(req.getParameter("orderNum"));
+		int prodId = Integer.parseInt(req.getParameter("prodId"));
 		
-		req.setAttribute("prodId", pId);
-		req.setAttribute("orderNum", orderNum);
+		ReviewService service = ReviewService.getInstance();
+		Board bo = service.selectProdReview(orderNum, prodId);
 		
+		req.setAttribute("boardVO", bo);
 		
-		Utils.forward(req, resp, "user/reviewForm.tiles");
-		
+		Utils.forward(req, resp, "user/myProdReview.tiles");
 	}
 
 }

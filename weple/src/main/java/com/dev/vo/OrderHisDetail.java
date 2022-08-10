@@ -18,6 +18,7 @@ public class OrderHisDetail {
 	int prodId;
 	int orderNum;
 	int isReview;
+	int isDelivery;
 
 }
 

@@ -20,32 +20,24 @@ public class InsertReviewController implements Controller {
 		
 		HttpSession session = req.getSession();
 		
-		//String writer = (String) session.getAttribute("userId");	
-		String writer = "cccc";
+		String writer = (String) session.getAttribute("userId");
 		String boardContent = req.getParameter("boardContent");
-		//int bno = Integer.parseInt(req.getParameter("bno")); 
-		//int prodId = Integer.parseInt(req.getParameter("prodId"));
-		int prodId = 10018;
-//		int bno = 10200;
+		int prodId = Integer.parseInt(req.getParameter("prodId"));
 		int rating = Integer.parseInt(req.getParameter("rating"));
+		int orderNum = Integer.parseInt(req.getParameter("orderNum"));
 		
 		ReviewInfo rvo = new ReviewInfo();
 		
 		rvo.setWriter(writer);
 		rvo.setBoardContent(boardContent);
 		rvo.setProdId(prodId);
-//		rvo.setBno(bno);
 		rvo.setRating(rating);	
 		
-		System.out.println(rating);
-//		System.out.println(bno);
-		
-		
-		service.addReivew(rvo);
-//		service.countStar(rvo);
+		service.addReivew(rvo, orderNum);
 		
 		req.setAttribute("insertList", rvo);
-
-		Utils.forward(req, resp, "reviewBoard/insertResult.jsp");	
+		req.setAttribute("orderNum", orderNum);
+		
+		Utils.forward(req, resp, "user/insertResult.tiles");	
 	}
 }

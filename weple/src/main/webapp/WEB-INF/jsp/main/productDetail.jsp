@@ -83,7 +83,26 @@
 						</div>
 						<table>
 							<tr>
+								<c:choose>
+								<c:when test="${userId == undefined }">
 								
+								
+								<td style="padding-right: 30px;">
+									<c:if test="${prodVO.isShare == 1 }">
+									<button
+										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
+										onclick="addCart(3)">
+										공동구매</button>
+									</c:if>
+								</td>
+								<td>
+									<button
+										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
+										onclick="addCart(3)">
+										일반구매</button>
+								</td>
+								</c:when>
+								<c:otherwise>
 								<td style="padding-right: 30px;">
 									<c:if test="${prodVO.isShare == 1 }">
 									<button
@@ -98,6 +117,8 @@
 										onclick="addCart(0)">
 										일반구매</button>
 								</td>
+								</c:otherwise>
+								</c:choose>
 							</tr>
 						</table>
 

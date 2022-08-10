@@ -28,12 +28,11 @@ public class OrderDAO extends DAO {
 		public void insertIntoOrders(Order order) {
 			try {
 				connect();			
-				String sql = "insert into orders values (?, ORDER_NUM_SEQ.NEXTVAL ,?, ?, ?)";
+				String sql = "insert into orders values (?, ORDER_NUM_SEQ.NEXTVAL, ?, ?, default)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, order.getUserId());
 				pstmt.setInt(2, order.getOrderPrice());
 				pstmt.setString(3, order.getOrderInfo());
-				pstmt.setString(4, order.getOrderDate());
 				
 				int r = pstmt.executeUpdate();
 				System.out.println(r + "건 주문정보 order에 들어감");

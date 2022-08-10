@@ -30,6 +30,12 @@ public class CatgProdListController implements Controller {
 		ProductService service = ProductService.getInstance();
 		List<Product> prodList = service.getProdUsingCatgId(where, id, userId);
 		
+		for(Product pr : prodList) {
+			if(pr.getAvgStar() != 99.9) {
+				System.out.println(pr.getAvgStar());
+			}
+		}
+		
 		Gson gson = new GsonBuilder().create();
 		resp.getWriter().print(gson.toJson(prodList));
 	}

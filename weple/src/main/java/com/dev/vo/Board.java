@@ -2,10 +2,11 @@ package com.dev.vo;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-
+@ToString
 public class Board {
 	private int boardType;
 	private String title;
@@ -19,13 +20,6 @@ public class Board {
 	private int CNT;
 	private String imgUrl;
 	private String repsContent;
-	
-	@Override
-	public String toString() {
-		return "Board [boardType=" + boardType + ", title=" + title + ", boardContent=" + boardContent + ", writer="
-				+ writer + ", writeDate=" + writeDate + ", bno=" + bno + ", prodId=" + prodId + ", isHandled="
-				+ isHandled + ", repsComment=" + repsComment + ", CNT=" + CNT + "]";
-	}
-	
+	private int orderNum;
 	
 }

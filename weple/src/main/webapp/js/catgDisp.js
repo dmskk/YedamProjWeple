@@ -63,7 +63,7 @@ function makeList() {
 
 
 function prodList(result) {
-
+	console.log(result);
 	let template = document.querySelector('#prodListTemplate');
 	for (let i = 0; i < result.length; i++) {
 		let prod_html = `<div class="col-lg-4 col-md-6 mb-4">
@@ -89,10 +89,22 @@ function prodList(result) {
 			prod_html += `<input id="heart${result[i].prodId}" type="checkbox" onClick="return false;" />`
 		}
 		/* 찜체크 끝 */
+		
 
 		prod_html += `<label for="heart${result[i].prodId}" onclick="jjimclick(${result[i].prodId})" > ❤</label> 
 						<span id="total${result[i].prodId}">${result[i].totaljjim}</span>
-					</div></div></div></div>`
+					</div>`;
+					
+		/* 평균별점 */
+		if (result[i].avgStar == 99.9) {
+			prod_html += `⭐리뷰없음`;
+		} else {
+			prod_html += `⭐${result[i].avgStar}`;
+		}
+		/* 평균별점 끝 */
+		
+		prod_html += `</div></div></div>`;
+		
 		template.innerHTML += prod_html;
 	}
 

@@ -115,11 +115,15 @@ public class ProductDAO extends DAO {
 	
 	// 카테고리 아이디로 검색해서 Product 객체 가져오기
 	public List<Product> searchProductUsingCatgId(int where, int id, String user) {
-		String sql = "select  decode(c.sum, null, '0', c.sum) totaljjim, decode(t.sum, null, '0', t.sum) myjjim, p.* "
+		String sql = "select  decode(c.sum, null, '0', c.sum) totaljjim, "
+				+ "decode(t.sum, null, '0', t.sum) myjjim, "
+				+ "decode(b.avg_cnt, null, 99.9, b.avg_cnt) avg_star, p.* "
 				+ "from products p,  (select count(*) sum, prod_id from jjim group by prod_id) c, "
-				+ "(select count(*) sum, prod_id from jjim where user_id='"+user+"' group by prod_id) t "
+				+ "(select count(*) sum, prod_id from jjim where user_id='"+user+"' group by prod_id) t, "
+				+ "(select prod_id, round(avg(cnt),1) avg_cnt from boards where board_type=3 group by prod_id) b "
 				+ "where p.prod_id = c.prod_id(+) "
 				+ "and c.prod_id = t.prod_id(+) "
+				+ "and p.prod_id = b.prod_id(+) "
 				+ "and catg_level_"+where+" = "+id;
 		List<Product> list = new ArrayList<>();
 		try {
@@ -143,6 +147,7 @@ public class ProductDAO extends DAO {
 				vo.setCatgLevel2(rs.getInt("catg_level_2"));
 				vo.setMyjjim(rs.getInt("myjjim"));
 				vo.setTotaljjim(rs.getInt("totaljjim"));
+				vo.setAvgStar(rs.getDouble("avg_star"));
 				list.add(vo);
 			}
 		} catch(SQLException e) {
