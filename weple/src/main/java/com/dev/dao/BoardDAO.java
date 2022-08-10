@@ -100,7 +100,9 @@ public class BoardDAO extends DAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+				
 				ReviewInfo rvo = new ReviewInfo();
+				
 				rvo.setBno(rs.getInt("bno"));
 				rvo.setProdId(rs.getInt("prod_id"));
 				rvo.setProdName(rs.getString("prod_name"));
@@ -256,14 +258,13 @@ public class BoardDAO extends DAO {
 			
 			String sql = "select  board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt "
 					+ "from(select rownum rn, board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt "
-					+ "from(select  board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt from v_bo_plus_nm where prod_id=? order by write_date desc ) "
+					+ "from(select  board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt from v_bo_plus_nm where board_type=3 order by write_date desc ) "
 					+ "where rownum <=?) " + "where rn>=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, prodId);
-			pstmt.setInt(2, cri.getAmount() * cri.getPageNum()); // 10 * 1;
-			pstmt.setInt(3, cri.getAmount() * (cri.getPageNum() - 1)); // 10
+			pstmt.setInt(1, cri.getAmount() * cri.getPageNum()); // 10 * 1;
+			pstmt.setInt(2, cri.getAmount() * (cri.getPageNum() - 1)); // 10
 
 			rs = pstmt.executeQuery();
 			System.out.println(cri.getAmount() * cri.getPageNum());
@@ -294,9 +295,9 @@ public class BoardDAO extends DAO {
 		connect();
 
 		try {
-			String sql = "select  board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt " +
-						 " from(select rownum rn, board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt " +
-	                     " from(select  board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt from v_bo_plus_nm where writer ='" + writer + "' and board_type=3 order by write_date desc ) "
+			String sql = "select  board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt, img_url " +
+						 " from(select rownum rn, board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt, img_url " +
+	                     " from(select  board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt, img_url from v_bo_plus_nm where writer ='" + writer + "' and board_type=3 order by write_date desc ) "
 	                   + " where rownum <=?) where rn>=?";
 			
 			
@@ -317,6 +318,7 @@ public class BoardDAO extends DAO {
 				rvo.setWriteDate(rs.getString("write_date"));
 				rvo.setBoardContent(rs.getString("board_content"));
 				rvo.setCnt(rs.getInt("cnt"));
+				rvo.setImgUrl(rs.getString("img_url"));
 
 				listPage.add(rvo);
 			}
@@ -326,7 +328,9 @@ public class BoardDAO extends DAO {
 			disconnect();
 		}
 		return listPage;
+		
 	}
+	
 
 	/*
 	 * 실시간 리뷰

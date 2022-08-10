@@ -64,8 +64,6 @@ public class ReviewService {
 		return dao.contentCount(prodId);
 	}
 	
-	
-	
 	/*
 	 * 실시간 리뷰
 	 * 별점이 높으면서 최신순으로

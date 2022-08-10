@@ -179,7 +179,7 @@ public class BuyDAO extends DAO {
 	}
 	
 	
-
+	//머지
 	// 결제 완료상품으로 바꾸기고 주문정보 들어오는 메소드
 	public void updateOrderComplete(Buy buy) {
 		try {
@@ -241,7 +241,7 @@ public class BuyDAO extends DAO {
 			List<OrderHisDetail> orderProdList = new ArrayList<>();
 			try {
 				connect();
-				String sql = "select p.prod_name, b.buy_amount, b.is_share, p.prod_price, b.buy_amount *  p.prod_price as total_price "
+				String sql = "select p.prod_name, b.buy_amount, b.is_share, p.prod_price, b.buy_amount *  p.prod_price as total_price, p.img_url, p.prod_id, b.is_review "
 						+ "from (select * from buy_process where user_id = ? and order_num = ?) b join products p "
 						+ "on b.prod_id = p.prod_id";
 				pstmt = conn.prepareStatement(sql);
@@ -256,6 +256,10 @@ public class BuyDAO extends DAO {
 					orderHistoryDetail.setBuyAmount(rs.getInt("buy_amount"));
 					orderHistoryDetail.setTotalPrice(rs.getInt("total_price"));
 					orderHistoryDetail.setProdPrice(rs.getInt("prod_price"));
+					orderHistoryDetail.setImgUrl(rs.getString("img_url"));
+					orderHistoryDetail.setProdId(rs.getInt("prod_id"));
+					orderHistoryDetail.setOrderNum(orderNum);
+					orderHistoryDetail.setIsReview(rs.getInt("is_review"));
 					
 					orderProdList.add(orderHistoryDetail);
 				}
