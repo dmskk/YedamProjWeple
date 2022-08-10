@@ -140,9 +140,9 @@ video {
   content: '';
   opacity: 0.75;
   background: #ffffff00; /* Old browsers */
-  background: -moz-linear-gradient(top, #ffffff00 0%, #ffffffcc 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #ffffff00 0%,#ffffffcc 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #ffffff00 0%,#ffffffcc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: -moz-linear-gradient(top, #ffffff00 0%, #b8c9eecc 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffffff00 0%,#b8c9eecc 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffffff00 0%,#b8c9eecc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4096ee', endColorstr='#39ced6',GradientType=0 ); /* IE6-9 */
   position:fixed;
   left:0;
@@ -297,18 +297,19 @@ video {
 02. HEADER CSS
 ================================================*/
 #header {
-  padding:20px 0;
+  padding:2px 0;
   position: fixed;
   left:0;
   right:0;
   top:0;
   z-index:999;
+  background-color: #ffffff42;
 }
 .container-fluid {
   padding:0 20px;
 }
 a#logo {
-  color: red;
+  color: #24318f;
   text-decoration: none;
   font-size: 17px;
   text-transform: uppercase;
@@ -333,12 +334,13 @@ a#logo {
   font-size: 15px;
   text-decoration:none;
   display:block;
-  font-weight: 500;
+  font-weight: 700;
   opacity: 0.9;
+  color: #6c7ae0;
 }
 .menu2{
   clear:both;
-  color :#d47100b2;
+  color :#24318f;
   font-size: 15px;
   text-decoration:none;
   display:block;
@@ -347,7 +349,7 @@ a#logo {
   float : right;
 }
 .menu2col{
-	color :#d47100b2;
+	color :#24318f;
 	margin-left: 20px;
 }
 
@@ -355,7 +357,7 @@ a#logo {
   content:'';
   display:block;
   height: 2px;
-  background:#fff;
+  background:#6c7ae0;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   -webkit-transform:scale(0);
@@ -416,7 +418,7 @@ a#logo {
 .welcome-box {
   font-size:20px;
   line-height:1.7;
-  color: #d47100b2;
+  color: #6c7ae0;
 }
 .welcome-first{
   font-size: 20px;
@@ -430,7 +432,7 @@ a#logo {
   max-width: 620px;
   width:100%;
   margin:0 auto 30px;
-  color: rgba(97, 97, 97, 0.767);
+  color: #222222;
   font-size: 17px;
 }
 .welcome-title {
@@ -438,7 +440,7 @@ a#logo {
   font-size: 40px;
   margin-bottom: 10px;
   letter-spacing:1em;
-  color: #d40000b2;
+  color: #24318f; 
 }
 .welcome-title span {
   font-size:20px;
@@ -470,17 +472,17 @@ a#logo {
   opacity: 1;
 }
 .mainbt{
-  color: rgb(114, 114, 114);
+  color: #222222;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 550;
-  border: 1px solid #d47100b2;
+  border: 1px solid #6c7ae0;
   background-color: #00000000;
   padding: 20px 30px 20px 30px;
   letter-spacing:1em;
 }
 .mainbt:hover {
-  background-color: rgba(196, 105, 0, 0.322);
+  background-color: #6c79e03d;
 }
 
 /*==============================================
@@ -551,9 +553,7 @@ a#logo {
 .col-md-6 figure{
   color: #d47100b2;
 }
-#vmap{
-  opacity: 0.9; 
-}
+
 
 /*==============================================
 06. SERVICES BLOCK CSS
