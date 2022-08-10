@@ -27,8 +27,13 @@ import com.dev.controller.mypage.MyPageController;
 import com.dev.controller.mypage.OrderHistoryController;
 import com.dev.controller.mypage.ProdQnAController;
 import com.dev.controller.mypage.UserUpdateController;
+import com.dev.controller.mypage.addressChangeController;
+import com.dev.controller.mypage.addressDeleteController;
+import com.dev.controller.mypage.addressDeleteFormController;
 import com.dev.controller.mypage.addressListController;
+import com.dev.controller.mypage.addressListDefaultController;
 import com.dev.controller.mypage.addressListFormController;
+import com.dev.controller.mypage.addressOutController;
 import com.dev.controller.mypage.addressUpdateController;
 import com.dev.controller.mypage.addressUpdateFormController;
 import com.dev.controller.notice.ShowNoticeBoardController;
@@ -104,10 +109,16 @@ public class FrontController extends HttpServlet {
 //		mappings.put("/findId.do", new userFindController());			//아이디찾기
 //		mappings.put("/findIdForm.do", new userFindFormController());			//아이디찾기
 
-		mappings.put("/addressUpdate.do", new addressUpdateController());			//배송지 추
-		mappings.put("/addressUpdateForm.do", new addressUpdateFormController());	//배송지 수정폼
+		mappings.put("/addressUpdate.do", new addressUpdateController());			//배송지 추가
+		
+		mappings.put("/addressDelete.do", new addressDeleteController());			//배송지 삭제
+		mappings.put("/addressDeleteForm.do", new addressDeleteFormController());	//배송지 삭제폼
+		
 		//mappings.put("/addressUpdate.do", new addressListController());	//배송지 조회
+		mappings.put("/addressListDefault.do", new addressListDefaultController());	//기본 배송지 조회
 		mappings.put("/addressUpdateForm.do", new addressListFormController());	//배송지 조회
+		mappings.put("/addressChange.do", new addressChangeController());	//기본 배송지로 지정
+		mappings.put("/addressOut.do", new addressOutController());	//기본 배송지로 지정
     
 		
 		// 리뷰관련 mappings

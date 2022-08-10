@@ -20,56 +20,37 @@ UserDAO mdao = new UserDAO();
 UserService service = UserService.getInstance();
 User userVO = service.getUserInfo(id);
 %>
-zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 <div class="p-t-40">
 	<h5 class="mtext-113 cl2 p-b-12" style="font-weight: bold;">배송지 관리</h5>
 
 	<p class="stext-107 cl6 p-b-40">소중한 내 배송지를 최신으로 관리하세요.</p>
 
-	<table border="1">
-	<h4>기본 배송지</h4>
-	<tr style="center">
-		<th>아이디</th>
-		<th>이름</th>
-		<th>배송지</th>
-		<th>전화번호</th>
 
-	</tr>
-		
-	<tr>
-			<th>
-				<input class="input" type="text" name="id" id="id"
-				placeholder="User ID" value="<%=userVO.getUserId()%>"
-				style="border: none" readonly>
-			</th>
-		
-			<th>
-				<input class="input" type="text" name="name" placeholder="Name"
-				id="name" value="<%=userVO.getUserName()%>" readonly>
-			</th>
-		
-	
-			<th>
-				<div class="adr">
-					<input value="<%=userVO.getZipCode()%>" readonly>
-					<input value="<%=userVO.getAddr()%>" readonly>
-					<input value="<%=userVO.getAddr2()%>" readonly>
-					<input value="<%=userVO.getAddrDetail()%>" readonly>
-				</div>
-			</th>
-	
-		
-			<th>
-				<input id="phone1" type="text" name="pnum1"	value="<%=userVO.getPhone1()%>" readonly />
-				-<input id="phone2" type="text" name="pnum2" value="<%=userVO.getPhone2()%>" readonly />
-				-<input id="phone3" type="text" name="pnum3" value="<%=userVO.getPhone3()%>" readonly />
-			</th>
-	
+	<form action="addressListDefault.do">
+	<table border="1">
+		<h4>기본 배송지</h4>
+		<p>한건만 등록 가능합니다.</p>
+		<tr style="center">
+			<th>배송지명</th>
+			<th>배송지</th>
+			<th>우편번호</th>
 		</tr>
+			
+		<c:forEach var="vo2" items="${list2}">
+		<tr>
+			<td><input type="text" value="${vo2.addrName}"  name="addr_name"></td>
+			<td>${vo2.addr} ${vo2.addr2} ${vo2.addrDetail}</td>
+			<td>${vo2.zipCode}</td>
+			<th>
+			<button onclick="return submit3(this.form)" style="background-color:grey;">
+			제외</button>
+			</th>
+		</tr>
+		</c:forEach>
 	</table>
-	<br>
-	
-	
+	</form>
+
+
 	<form action="addressUpdate.do" id="updateForm" name="updateForm">
 		<table border="1">
 	<h4>주소록 추가</h4>
@@ -87,12 +68,12 @@ zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 				style="border: none" readonly>
 			</th>
 			<th>
-				<input type="text" placeholder="AddressName">
+				<input type="text" placeholder="AddressName" id="addr_name" name="addr_name">
 			</th>
 
 			<th>
 				<div class="adr">
-					<input type="text" id="postcode" placeholder="우편번호" name="post">
+					<input type="text" id="postcode" value="0000" name="post">
 					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
 					<input type="text" id="address" placeholder="주소" name="address1">
 					<input type="text" id="detailAddress" placeholder="상세주소" name="address2">
@@ -101,58 +82,84 @@ zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 			</th>
 	
 			<th>
-			<button class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04 button" onclick="updateCheck()">
+			<button onclick="updateCheck()" style="background-color:grey;">
 			추가</button>
 			</th>
 		</tr>
 	</table>
 	</form>
 	<br>
+
+
+	
+	<form action="addressDelete.do" id="deleteForm" name="deleteForm">
 	<table border="1">
-		<h4>추가 배송지</h4>
+		<h4>배송지 목록</h4>
 		<tr style="center">
 			<th>배송지명</th>
 			<th>배송지</th>
 			<th>우편번호</th>
-			<th>삭제</th>
+
 		</tr>
 			
 		<c:forEach var="vo" items="${list}">
 		<tr>
-			<td>${vo.addrName}</td>
+			<td><input type="text" value="${vo.addrName}" id="addr_name" name="addr_name"></td>
 			<td>${vo.addr} ${vo.addr2} ${vo.addrDetail}</td>
 			<td>${vo.zipCode}</td>
 				
+
 			<th>
-			<button class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04 button" onclick="#">
-			삭제</button>
+			<button onclick="return submit2(this.form)" style="background-color:grey;">
+			기본주소 지정</button>
 			</th>
+			<th>
+			<input type='submit' value='삭제'>
+			</th>
+			
 	
 		</tr>
 		</c:forEach>
 	</table>
+	</form>
 	<br>
 </div>
 
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-	
+function submit3(frm) { 
+    frm.action='addressOut.do'; 
+    frm.submit(); 
+	alert("제외완료");
+    return true; 
+  }
+
+function submit2(frm) { 
+    frm.action='addressChange.do'; 
+    frm.submit(); 
+	alert("등록완료");
+    return true; 
+  } 
+
+function deleteCheck(){
+	  deleteForm.submit();
+	  alert("삭제완료");
+}
 function updateCheck() {
 
 	  let pt = document.getElementById("postcode");
 	  let ad1 = document.getElementById("address");
 	  let ad2 = document.getElementById("detailAddress");
 	  let ad3 = document.getElementById("extraAddress");
+	  let adn = document.getElementById("addr_name");
 
-	  if (ad1.value == ""||ad2.value == ""||ad3.value == "") {
+	  if (ad1.value == ""||ad2.value == ""||ad3.value == ""||pt.value == ""||adn.value == "") {
 		    alert("주소를 입력하세요.");
-		    ad1.value="";
-		    ad2.value="";
-		    ad3.value="";
 		    ad1.focus();
 		    return false;
 		  };
+		  
 	  updateForm.submit();
 	  alert("추가완료");
 	}

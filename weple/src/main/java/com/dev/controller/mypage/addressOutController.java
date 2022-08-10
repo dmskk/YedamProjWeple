@@ -1,4 +1,4 @@
-package com.dev.controller.user;
+package com.dev.controller.mypage;
 
 import java.io.IOException;
 
@@ -9,29 +9,26 @@ import javax.servlet.http.HttpServletResponse;
 import com.dev.common.Utils;
 import com.dev.controller.Controller;
 import com.dev.service.user.UserService;
-import com.dev.vo.User;
+import com.dev.vo.Addr;
 
-public class userDeleteController implements Controller {
+public class addressOutController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		UserService service = UserService.getInstance();
 		
-		String id = req.getParameter("id");
-		String pw = req.getParameter("password");
+		String adn = req.getParameter("addr_name");
+		Addr vo = new Addr();
+		vo.setAddrName(adn);
+		System.out.println(adn);
 		
-		User vo = new User();
-		vo.setUserId(id);
-		vo.setUserPwd(pw);
+		service.outAddress(vo);
 		
-		service.dropUser(id, pw);
 		
 		req.setAttribute("user", vo);
 		
 		
-		Utils.forward(req, resp, "main.do");
-	
+		Utils.forward(req, resp, "mypage.do");		
 	}
 
 }

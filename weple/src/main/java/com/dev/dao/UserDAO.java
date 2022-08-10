@@ -11,6 +11,33 @@ import com.dev.vo.User;
 
 public class UserDAO extends DAO {
 
+	// 기본!! 배송지 조회
+	public List<Addr> getAdrListD(String userId) {
+		String sql = "select * from addr where user_id = ? and is_default=1 ";
+		List<Addr> list2 = new ArrayList<>();
+		connect();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Addr vo2 = new Addr();
+				vo2.setUserId(rs.getString("user_id"));
+				vo2.setAddr(rs.getString("addr"));
+				vo2.setAddr2(rs.getString("addr2"));
+				vo2.setAddrDetail(rs.getString("addr_detail"));
+				vo2.setAddrName(rs.getString("addr_name"));
+				vo2.setZipCode(rs.getInt("zip_code"));
+				
+				list2.add(vo2);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list2;
+	}
 	// 배송지 조회
 	public List<Addr> getAdrList(String userId) {
 		String sql = "select * from addr where user_id = ? ";
@@ -41,20 +68,78 @@ public class UserDAO extends DAO {
 
 	// 배송지 추가
 	public void updateAddress(Addr vo) {
-		String sql = "insert into addr(addr,addr_detail,zip_code,is_default,addr_name,addr2) values(?, ?, ?, default, ?, ?)";
-		//INSERT INTO Reservation(ID, Name, ReserveDate, RoomNum)	VALUES(5, '이순신', '2016-02-16', 1108);
+		String sql = "insert into addr(user_id,addr,addr_detail,zip_code,is_default,addr_name,addr2) values(?, ?, ?, ?, default, ?, ?)";
 		connect();
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setString(1, vo.getAddr());
-			pstmt.setString(2, vo.getAddrDetail());
-			pstmt.setInt(3, vo.getZipCode());
-			pstmt.setString(4, vo.getAddrName());
-			pstmt.setString(5, vo.getAddr2());
+			pstmt.setString(1, vo.getUserId());
+			pstmt.setString(2, vo.getAddr());
+			pstmt.setString(3, vo.getAddrDetail());
+			pstmt.setInt(4, vo.getZipCode());
+			pstmt.setString(5, vo.getAddrName());
+			pstmt.setString(6, vo.getAddr2());
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건 추가");
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+	
+	//배송지 삭제
+	public void deleteAddress(Addr vo) {
+		String sql = "delete addr where addr_name = ? ";
+		connect();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, vo.getAddrName());
+			int r = pstmt.executeUpdate();
+			System.out.println(r + "건 삭제");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+	//기본배송지로 지정
+	public void chAddress(Addr vo) {
+		String sql = "update addr set is_default = '1' where addr_name = ?";
+		connect();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			//pstmt.setInt(1, vo.getIsDefault());
+			pstmt.setString(1, vo.getAddrName());
+			int r = pstmt.executeUpdate();
+			System.out.println(r + "건 추가");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+	//기본배송지로 제외
+	public void otAddress(Addr vo) {
+		String sql = "update addr set is_default = '0' where addr_name = ?";
+		connect();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			//pstmt.setInt(1, vo.getIsDefault());
+			pstmt.setString(1, vo.getAddrName());
+			int r = pstmt.executeUpdate();
+			System.out.println(r + "건 제외");
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
