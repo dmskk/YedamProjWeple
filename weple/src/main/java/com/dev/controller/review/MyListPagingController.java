@@ -30,10 +30,9 @@ public class MyListPagingController implements Controller {
 		
 		cri.setPageNum(Integer.parseInt(pageNum));
 		cri.setAmount(Integer.parseInt(amount));
-		
-		
-		
+	
 		ReviewService service = ReviewService.getInstance();
+		
 		List<ReviewInfo> myPagingList = service.getMyListPaging(cri, writer);
 		
 		if (session.getAttribute("pagingList") == null) {
@@ -41,13 +40,12 @@ public class MyListPagingController implements Controller {
 		} else {
 			session.removeAttribute("pagingList");
 			session.setAttribute("pagingList", myPagingList);
-		}
+		}		
 		
 		//페이지 no amount구해서 정보 넘겨줌
-		List<ReviewInfo> totalMyList = service.myReviewList(writer);
-		
-		for(ReviewInfo r : totalMyList) {
-			System.out.println(r);
+		List<ReviewInfo> totalMyList = service.myReviewList(writer);		
+		for (ReviewInfo info : totalMyList) {
+			System.out.println(info);
 		}
 		
 		int total = totalMyList.size();

@@ -63,8 +63,8 @@
 			<a
 				href="myListPaging.do?pageNum=${pageInfo.startPage - 1 }&amount=${pageInfo.cri.amount}">prev</a>
 		</c:if>
-		<c:forEach var="num" begin="${pageInfo.startPage }"
-			end="${pageInfo.endPage }">
+		<c:forEach var="num" begin="${pageInfo.startPage }" end="${pageInfo.endPage}">
+			<h2></h2>
 			<a
 				href="myListPaging.do?pageNum=${num}&amount=${pageInfo.cri.amount}">${num }</a>
 		</c:forEach>
