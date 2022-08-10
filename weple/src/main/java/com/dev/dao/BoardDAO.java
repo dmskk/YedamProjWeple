@@ -294,9 +294,9 @@ public class BoardDAO extends DAO {
 		connect();
 
 		try {
-			String sql = "select  board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt " +
-						 " from(select rownum rn, board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt " +
-	                     " from(select  board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt from v_bo_plus_nm where writer ='" + writer + "' and board_type=3 order by write_date desc ) "
+			String sql = "select  board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt, img_url " +
+						 " from(select rownum rn, board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt, img_url " +
+	                     " from(select  board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt, img_url from v_bo_plus_nm where writer ='" + writer + "' and board_type=3 order by write_date desc ) "
 	                   + " where rownum <=?) where rn>=?";
 			
 			
@@ -317,6 +317,7 @@ public class BoardDAO extends DAO {
 				rvo.setWriteDate(rs.getString("write_date"));
 				rvo.setBoardContent(rs.getString("board_content"));
 				rvo.setCnt(rs.getInt("cnt"));
+				rvo.setImgUrl(rs.getString("img_url"));
 
 				listPage.add(rvo);
 			}

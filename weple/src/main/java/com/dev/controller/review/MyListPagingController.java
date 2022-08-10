@@ -36,10 +36,10 @@ public class MyListPagingController implements Controller {
 		ReviewService service = ReviewService.getInstance();
 		List<ReviewInfo> myPagingList = service.getMyListPaging(cri, writer);
 		
-		if (session.getAttribute("pagingList") == null) {
+		if (session.getAttribute("pagingList") != null) {
+			session.removeAttribute("pagingList");
 			session.setAttribute("pagingList", myPagingList);
 		} else {
-			session.removeAttribute("pagingList");
 			session.setAttribute("pagingList", myPagingList);
 		}
 		

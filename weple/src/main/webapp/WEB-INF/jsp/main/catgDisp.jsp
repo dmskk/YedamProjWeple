@@ -46,7 +46,7 @@
 	int where = Integer.parseInt(request.getParameter("catgLevel"));
 	int get = where + 1;
 	int id = Integer.parseInt(request.getParameter("catgId"));
-	String userId = "agsir";
+	String userId = (String) session.getAttribute("userId");
 	
 	
 	List<Integer> catgList = service.getCatgId(get, where, id);

@@ -15,5 +15,5 @@ public class ReviewInfo {
 	private String writeDate;
 	private int cnt;
 	private int rating;
-	
+	private String imgUrl;
 }
