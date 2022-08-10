@@ -44,6 +44,9 @@
 										<li><a href="catgDisp.do?catgId=95793&catgLevel=2&name=체리/석류/아보카도" class="catg level2" id="95793">체리/석류/아보카도</a>
 										</li>
 										<li><a href="catgDisp.do?catgId=95794&catgLevel=2&name=건과일/분말" class="catg level2" id="95794">건과일/분말</a>
+										</li>
+										<li><a href="catgDisp.do?catgId=95796&catgLevel=2&name=냉동/간편과일" class="catg level2" id="95796">냉동/간편과일</a>
+										</li>
 									</ul></li>
 								<li class="active-menu"><a class="catg level1" href="#">채소</a>
 									<ul class="sub-menu">

@@ -100,7 +100,9 @@ public class ProductService {
 	public Map<String, String> getCatgName() throws IOException, ParseException {         
 		JSONParser parser = new JSONParser();         
 		// JSON 파일 읽기        
-		Reader reader = new FileReader("C:\\dev\\catg.json");        
+		System.out.println(this.getClass().getResource("./catg.json").getPath());
+		String realPath = this.getClass().getResource("./catg.json").getPath();
+		Reader reader = new FileReader(realPath); 
 		JSONObject jsonObject = (JSONObject) parser.parse(reader);         
 		Map<String, String> list = (Map<String, String>) jsonObject.get("level3");           
 		return list;
