@@ -25,7 +25,8 @@ public class OrderDAO extends DAO {
 
 	
 		// orders에 insert하는 메소드(상품 구매 완료시)
-		public void insertIntoOrders(Order order) {
+		public int insertIntoOrders(Order order) {
+			int orderNum = 0;
 			try {
 				connect();			
 				String sql = "insert into orders values (?, ORDER_NUM_SEQ.NEXTVAL, ?, ?, default)";
@@ -35,12 +36,22 @@ public class OrderDAO extends DAO {
 				pstmt.setString(3, order.getOrderInfo());
 				
 				int r = pstmt.executeUpdate();
-				System.out.println(r + "건 주문정보 order에 들어감");
+				if(r>0) {
+					System.out.println(r+"건 입력완료");
+				}
+				
+				String sql2 = "select * from v_max_order_seq where user_id='"+order.getUserId()+"'";
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql2);
+				if(rs.next()) {
+					orderNum = rs.getInt("order_num");
+				}
 			} catch(SQLException e) {
 				e.printStackTrace();
 			} finally {
 				disconnect();
 			}
+			return orderNum;
 		}
 		
 		
@@ -112,6 +123,31 @@ public class OrderDAO extends DAO {
 			}
 			return order;
 		}
+		
+		
+		/*
+		 * 직전 6개월 간 거래 실적 조회
+		 * 
+		 */
+		
+		public Long getMyRecord(String userId) {
+			Long record = 0L;
+			try {
+				connect();
+				String sql = "select * from v_order_record where = '" + userId + "'";
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
+				if(rs.next()) {
+					record = rs.getLong("order_price");
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+			return record;
+		}
+
 		
 		
 }

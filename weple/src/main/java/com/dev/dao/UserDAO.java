@@ -387,5 +387,21 @@ public class UserDAO extends DAO {
 		}
 		return null;
 	}
-
+	
+	
+	// 회원 등급 변경
+	public void updateUserGrade(User vo) {
+		try {
+			connect();
+			String sql = "update users set grade = ? where user_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vo.getGrade());
+			pstmt.setString(2, vo.getUserId());
+			pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
 }

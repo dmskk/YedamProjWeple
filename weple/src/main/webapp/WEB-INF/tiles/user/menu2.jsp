@@ -1,9 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 
-	<h4 class="mtext-112 cl2 p-b-33">${userId }님, <br>안녕하세요!</h4>
+	<h4 class="mtext-112 cl2 p-b-10">${userId }님, <br>안녕하세요!</h4>
+	<h4 class="mtext-50 cl2 p-b-40" style="font-size: 16px;">회원등급 : 
+	<c:choose>
+		<c:when test="${userVO.grade == 1 }">🌱새싹</c:when>
+		<c:when test="${userVO.grade == 2 }">🍀네잎클로버</c:when>
+		<c:when test="${userVO.grade == 3 }">🌳나무</c:when>
+		<c:otherwise>🍏사과</c:otherwise>
+	</c:choose> </h4>
 
 	<ul>
 		<li class="bor18"><a href="orderHistoryMain.do"

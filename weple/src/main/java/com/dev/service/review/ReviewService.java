@@ -24,7 +24,9 @@ public class ReviewService {
 	
 	//리뷰등록
 	public void addReivew(ReviewInfo rvo, int orderNum) {
-		dao.addReivew(rvo);
+		//리뷰 등록하고
+		dao.addReivew(rvo, orderNum);
+		//is_review = 1로 바꿔주고
 		bdao.updateReview(orderNum, rvo.getProdId());
 	}
 	//리뷰 리스트 출력
