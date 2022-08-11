@@ -460,4 +460,25 @@ public List<ProdReview> rtPagingList(Criteria cri){
 			disconnect();
 		}
 	}
+
+	public Board getReviewOrderNum(int bno) {
+		Board bd = new Board();
+		try {
+			connect();
+			String sql = "select * from boards where bno=" + bno;
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+				bd.setOrderNum(rs.getInt("order_num"));
+				bd.setProdId(rs.getInt("prod_id"));
+				return bd;
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		
+		return bd;
+	}
 }

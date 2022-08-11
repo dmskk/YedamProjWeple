@@ -92,13 +92,14 @@ public class UserDAO extends DAO {
 	
 	//배송지 삭제
 	public void deleteAddress(Addr vo) {
-		String sql = "delete addr where addr_name = ? ";
+		String sql = "delete addr where addr_name = ? and user_id = ?";
 		connect();
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, vo.getAddrName());
+			pstmt.setString(2, vo.getUserId());
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건 삭제");
 
@@ -110,7 +111,7 @@ public class UserDAO extends DAO {
 	}
 	//기본배송지로 지정
 	public void chAddress(Addr vo) {
-		String sql = "update addr set is_default = '1' where addr_name = ?";
+		String sql = "update addr set is_default=1 where addr_name = ? and user_id = ?";
 		connect();
 		
 		try {
@@ -118,6 +119,7 @@ public class UserDAO extends DAO {
 			
 			//pstmt.setInt(1, vo.getIsDefault());
 			pstmt.setString(1, vo.getAddrName());
+			pstmt.setString(2, vo.getUserId());
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건 추가");
 			
@@ -129,14 +131,14 @@ public class UserDAO extends DAO {
 	}
 	//기본배송지로 제외
 	public void otAddress(Addr vo) {
-		String sql = "update addr set is_default = '0' where addr_name = ?";
+		String sql = "update addr set is_default=0 where addr_name = ? and user_id = ?";
 		connect();
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			//pstmt.setInt(1, vo.getIsDefault());
 			pstmt.setString(1, vo.getAddrName());
+			pstmt.setString(2, vo.getUserId());
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건 제외");
 			

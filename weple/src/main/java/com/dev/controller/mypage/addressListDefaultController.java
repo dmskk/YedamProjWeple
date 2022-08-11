@@ -29,7 +29,7 @@ public class addressListDefaultController implements Controller {
 		}
 		req.setAttribute("list2", list2);
 		
-		Utils.forward(req, resp, "user/addressUpdate.tiles");
+		Utils.forward(req, resp, "addressUpdateForm.do");
 	}
 		
 

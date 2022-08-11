@@ -1,9 +1,6 @@
 package com.dev.controller.order;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.dev.common.Utils;
 import com.dev.controller.Controller;
+import com.dev.dao.ProductDAO;
 import com.dev.service.addr.AddrService;
 import com.dev.service.buy.BuyService;
 import com.dev.service.order.OrderService;
@@ -30,6 +28,7 @@ public class insertOrderController implements Controller {
 		OrderService orderService = OrderService.getInstance();
 		AddrService addrService = AddrService.getInstance();
 		BuyService buyService = BuyService.getInstance();
+		ProductDAO pDAO = new ProductDAO();
 	
 		// 세션에서 userId 받아오기
 		HttpSession session = req.getSession();
@@ -40,7 +39,6 @@ public class insertOrderController implements Controller {
 		@SuppressWarnings("unchecked")
 		List<Cart> cartList = (List<Cart>) session.getAttribute("cartList");
 		
-		int totalPrice;
 		int orderPrice = 0;
 	
 		// totalPrice로 orderPrice계산하기
@@ -75,6 +73,17 @@ public class insertOrderController implements Controller {
 			buyProd.setProdId(cartProd.getProdId());
 			buyProd.setOrderNum(orderNum);
 			buyService.updateOrderComplete(buyProd);
+		}
+		
+		// 공동구매 수량 변경
+		for(Cart c : cartList) {
+			if(c.getIsShare() == 1) {
+				//현재 공동구매 수량 가져오기
+				int curr = pDAO.ParticipatePeopleNum(c.getProdId());
+				int next = curr + c.getBuyAmount();
+				//공동구매 수량 바꾸기
+				pDAO.updateParticipatePeople(next, c.getProdId());
+			}
 		}
 
 		

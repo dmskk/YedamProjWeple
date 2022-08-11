@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.dev.common.Utils;
 import com.dev.controller.Controller;
+import com.dev.service.buy.BuyService;
 import com.dev.service.review.ReviewService;
 import com.dev.vo.Board;
 import com.dev.vo.ReviewInfo;
@@ -19,13 +19,16 @@ public class DeleteReviewController implements Controller {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		ReviewService service = ReviewService.getInstance();
-
+		BuyService bservice = BuyService.getInstance();
 		ReviewInfo rvo = new ReviewInfo();
 
 		HttpSession session = req.getSession();
 
 		int bno = Integer.parseInt(req.getParameter("bno"));
 		String writer = (String) session.getAttribute("userId");
+		
+		Board info = service.getReviewOrderNum(bno);
+		bservice.updateIsReview(info.getOrderNum(), info.getProdId());
 
 		rvo.setBno(bno);
 		rvo.setWriter(writer);

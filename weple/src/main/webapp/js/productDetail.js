@@ -6,9 +6,16 @@
  /*공동구매 버튼을 눌렀을 때*/
  function addCart(num) {
 	console.log(num);
-	if (num === 3) {
+	if (num == 3) {
 		swal({
 		  title: "로그인 후 이용 가능합니다.",
+		  icon: "info",
+		  button: "닫기",
+		});
+		return false;
+	} else if(num == 4) {
+		swal({
+		  title: "공동 구매가 마감되었습니다.",
 		  icon: "info",
 		  button: "닫기",
 		});

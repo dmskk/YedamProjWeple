@@ -27,6 +27,8 @@ public class OrderService {
 	// 주문 내역 목록 업로드
 	public int insertIntoOrders(Order order) {
 		return oDAO.insertIntoOrders(order);
+		
+		
 	}
 
 	// 주문 정보(전체) 보여주기

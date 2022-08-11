@@ -507,7 +507,7 @@ public class ProductDAO extends DAO {
 			connect();
 			String sql = "update products set participate_people = ? where prod_id = ? and is_share = 1";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, prodId);
+			pstmt.setInt(1, participate);
 			pstmt.setInt(2, prodId);
 			
 			int r = pstmt.executeUpdate();

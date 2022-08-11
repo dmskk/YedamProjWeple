@@ -48,11 +48,11 @@
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-info stext-102 trans-04">
-								<c:forEach var="star" items="1,2,3,4,5" begin="0" end="${shareItem.star - 1 }">
+								<c:forEach var="star" begin="1" end="${shareItem.star }">
 									<img src="${pageContext.request.contextPath}/img/icon-basket-active.png"
 									style="width: 19px;">
 								</c:forEach>
-								<c:forEach var="star" items="1,2,3,4,5" begin="0" end="${4 - shareItem.star }">
+								<c:forEach var="star" begin="${shareItem.star + 1 }" end="5">
 									<img src="${pageContext.request.contextPath}/img/icon-basket-none.png"
 									style="width: 19px;">
 								</c:forEach>

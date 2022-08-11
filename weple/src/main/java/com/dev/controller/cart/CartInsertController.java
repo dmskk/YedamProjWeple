@@ -56,14 +56,7 @@ public class CartInsertController implements Controller {
 			service.updateCart(prodId, buyAmount, userId, isShare);
 		}
 		
-		// 공동구매일 경우 그 수량만큼 공동구매 인원 수정하기
-		if (isShare == 1) {
-		ProductService productService = ProductService.getInstance();
-		int nowParticipate = productService.ParticipatePeopleNum(prodId);
-		int upParticipate = nowParticipate + buyAmount;
-		productService.updateParticipatePeople(upParticipate, prodId);
-		}
-//		끝
+		
 		resp.getWriter().print("success");
 		
 
