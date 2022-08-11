@@ -56,4 +56,8 @@ public class NoticeService {
 	public void insertComments(Comments comments) {
 		nDAO.insertComments(comments);
 	}
+
+	public int getCommentNum(String userId) {
+		return nDAO.getCommentNum(userId);
+	}
 }

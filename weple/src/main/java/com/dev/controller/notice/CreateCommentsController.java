@@ -13,11 +13,15 @@ import com.dev.common.Utils;
 import com.dev.controller.Controller;
 import com.dev.service.notice.NoticeService;
 import com.dev.vo.Comments;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class CreateCommentsController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/json; charset=utf-8;");
+		
 		System.out.println(req.getParameter("createComment"));
 		System.out.println(req.getParameter("bno"));
 		
@@ -47,7 +51,13 @@ public class CreateCommentsController implements Controller {
 		// bno, userId, reple, writeDate
 		noticeService.insertComments(comments);
 		
-		Utils.forward(req, resp, "main/createMessageShow.tiles");
+		
+		// reple_num 가져오기
+		int reple_num = noticeService.getCommentNum(userId);
+		comments.setRepleNum(reple_num);
+		
+		Gson gson = new GsonBuilder().create();
+		resp.getWriter().print(gson.toJson(comments));
 	}
 
 }

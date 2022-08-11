@@ -20,108 +20,115 @@ UserDAO mdao = new UserDAO();
 UserService service = UserService.getInstance();
 User userVO = service.getUserInfo(id);
 %>
+
 <div class="p-t-40">
-	<h5 class="mtext-113 cl2 p-b-12" style="font-weight: bold;">배송지 관리</h5>
-
-	<p class="stext-107 cl6 p-b-40">소중한 내 배송지를 최신으로 관리하세요.</p>
-
-
+	<h5 class="mtext-113 cl2 p-b-12" style="font-weight: bold; padding-bottom: 5px;">기본 배송지</h5>
+	<p class="stext-107 cl6 p-b-40" style="padding-bottom: 5px;">한 건만 등록 가능합니다.</p>
 	<form action="addressListDefault.do">
-	<table border="1">
-		<h4>기본 배송지</h4>
-		<p>한건만 등록 가능합니다.</p>
-		<tr style="center">
-			<th>배송지명</th>
-			<th>배송지</th>
-			<th>우편번호</th>
-		</tr>
-			
-		<c:forEach var="vo2" items="${list2}">
-		<tr>
-			<td><input type="text" value="${vo2.addrName}"  name="addr_name"></td>
-			<td>${vo2.addr} ${vo2.addr2} ${vo2.addrDetail}</td>
-			<td>${vo2.zipCode}</td>
-			<th>
-		</tr>
-		</c:forEach>
-	</table>
-	</form>
-
-
-	<form action="addressUpdate.do" id="updateForm" name="updateForm">
-		<table border="1">
-	<h4>주소록 추가</h4>
-	<tr style="center">
-		<th>아이디</th>
-		<th>배송지명</th>
-		<th>배송지</th>
-		<th>추가하기</th>
-	</tr>
-	
-		<tr>
-			<th>
-				<input class="input" type="text" name="id" id="id"
-				placeholder="User ID" value="<%=userVO.getUserId()%>"
-				style="border: none" readonly>
-			</th>
-			<th>
-				<input type="text" placeholder="AddressName" id="addr_name" name="addr_name">
-			</th>
-
-			<th>
-				<div class="adr">
-					<input type="text" id="postcode" value="0000" name="post">
-					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
-					<input type="text" id="address" placeholder="주소" name="address1">
-					<input type="text" id="detailAddress" placeholder="상세주소" name="address2">
-					<input type="text" id="extraAddress" placeholder="참고주소" name="address3">
-				</div>
-			</th>
-	
-			<th>
-			<button onclick="updateCheck()" style="background-color:grey;">
-			추가</button>
-			</th>
-		</tr>
-	</table>
-	</form>
-	<br>
-
-
-	
-	<form action="addressDelete.do" id="deleteForm" name="deleteForm">
-	<table border="1">
-		<h4>배송지 목록</h4>
-		<tr style="center">
-			<th>배송지명</th>
-			<th>배송지</th>
-			<th>우편번호</th>
-
-		</tr>
-			
-		<c:forEach var="vo" items="${list}">
-		<tr>
-			<td><input type="text" value="${vo.addrName}" id="addr_name" name="addr_name"></td>
-			<td>${vo.addr} ${vo.addr2} ${vo.addrDetail}</td>
-			<td>${vo.zipCode}</td>
+		<table class="table-shopping-cart" >
+			<tr class="table_head">
+				<th>배송지명</th>
+				<th>배송지</th>
+				<th>우편번호</th>
+			</tr>
 				
-
-			<th>
-			<button onclick="return submit2()" style="background-color:grey;">
-			기본주소 지정</button>
-			</th>
-			<th>
-			<input type='submit' value='삭제'>
-			</th>
-			
-	
-		</tr>
-		</c:forEach>
-	</table>
+			<c:forEach var="vo2" items="${list2}">
+				<tr class="table_head">
+					<td><input type="text" value="${vo2.addrName}"  name="addr_name" readonly></td>
+					<td>${vo2.addr} ${vo2.addr2} ${vo2.addrDetail}</td>
+					<td>${vo2.zipCode}</td>
+					<th>
+				</tr>
+			</c:forEach>
+		</table>
 	</form>
-	<br>
-</div>
 
+
+</div>
+<div class="p-t-40">
+	<h5 class="mtext-113 cl2 p-b-12" style="font-weight: bold; padding-bottom: 5px;">배송지 추가</h5>
+	<form action="addressUpdate.do" id="updateForm" name="updateForm" onSubmit="return false;">
+		<table class="table-shopping-cart" >
+			<tr class="table_head">
+				<th>배송지 이름</th>
+				<th>우편번호</th>
+				<th></th>
+				<th>주소</th>
+				<th>상세주소</th>
+				<th>참고주소</th>
+				<th></th>
+			</tr>
+	
+			<tr class="table_head" style="height: 100px;">
+				<td class="addr">
+					<input type="text" placeholder="AddressName" id="addr_name" name="addr_name"
+					style="width: 120px;">
+				</td>
+				<td class="addr">
+					<input type="text" id="postcode" placeholder="0000" name="post"
+					style="width: 70px;">
+				</td>
+				<td class="addr" style="padding-right: 10px;">
+					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"
+					class="flex-c-m stext-101cl2 bg8 bor13 hov-btn3 trans-04 pointer"
+					style="padding: 2px 8px;">
+				</td>
+				<td class="addr">
+					<input type="text" id="address" placeholder="주소" name="address1">
+				</td>
+				<td class="addr">
+					<input type="text" id="detailAddress" placeholder="상세주소" name="address2">
+				</td>
+				<td class="addr">
+					<input type="text" id="extraAddress" placeholder="참고주소" name="address3">
+				</td>
+				<td class="addr">
+					<button onclick="updateCheck()"
+					class="flex-c-m stext-101 cl0 bg3 bor13 hov-btn3 trans-04 pointer"
+					style="padding: 2px 8px;">
+						추가</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<div class="p-t-40">
+	<h5 class="mtext-113 cl2 p-b-12" style="font-weight: bold; padding-bottom: 5px;">배송지 목록</h5>
+	<form action="addressDelete.do" id="deleteForm" name="deleteForm">
+		<table class="table-shopping-cart" >
+			<tr class="table_head">
+				<th>배송지명</th>
+				<th>배송지</th>
+				<th>우편번호</th>
+				<th></th>
+				<th></th>
+	
+			</tr>
+				
+			<c:forEach var="vo" items="${list}">
+			<tr class="table_head">
+				<td><input type="text" value="${vo.addrName}" id="addr_name" name="addr_name"  style="width: 100px;" readonly></td>
+				<td>${vo.addr} ${vo.addr2} ${vo.addrDetail}</td>
+				<td>${vo.zipCode}</td>
+					
+	
+				<th>
+				<button onclick="return submit2()" class="flex-c-m stext-101 cl0 bg3 bor13 hov-btn3 trans-04 pointer"
+					style="padding: 2px 8px;">
+				기본 배송지 지정</button>
+				</th>
+				<th>
+				<input type='submit' value='삭제' class="flex-c-m stext-101cl2 bg8 bor13 hov-btn3 trans-04 pointer"
+					style="padding: 2px 8px;">
+				</th>
+				
+		
+			</tr>
+			</c:forEach>
+		</table>
+	</form>
+</div>
+	<br>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -135,30 +142,47 @@ function submit3(frm) {
 function submit2() { 
     let addrName = event.target.parentElement.parentElement.firstElementChild.firstElementChild.value;
     location.href='addressChange.do?addrName='+addrName;
-	alert("등록완료");
+    swal({
+	  title: "기본 배송지가 변경되었습니다.",
+	  icon: "success",
+	  button: "닫기",
+	});
     return false;
   } 
 
 function deleteCheck(){
 	  deleteForm.submit();
-	  alert("삭제완료");
+	  swal({
+		  title: "삭제가 완료되었습니다.",
+		  icon: "success",
+		  button: "닫기",
+		});
 }
 function updateCheck() {
-
 	  let pt = document.getElementById("postcode");
 	  let ad1 = document.getElementById("address");
 	  let ad2 = document.getElementById("detailAddress");
 	  let ad3 = document.getElementById("extraAddress");
 	  let adn = document.getElementById("addr_name");
 
-	  if (ad1.value == ""||ad2.value == ""||ad3.value == ""||pt.value == ""||adn.value == "") {
-		    alert("주소를 입력하세요.");
+	  if (ad1.value == ""||ad2.value == ""||pt.value == ""||adn.value == "") {
+		  swal({
+			  title: "주소를 입력하세요.",
+			  icon: "info",
+			  button: "닫기",
+			});
 		    ad1.focus();
 		    return false;
-		  };
+		} else {
+		  updateForm.submit();
+		  swal({
+			  title: "배송지 목록이 추가되었습니다.",
+			  icon: "success",
+			  button: "닫기",
+			});
+		  return false;
+		}
 		  
-	  updateForm.submit();
-	  alert("추가완료");
 	}
 
         
