@@ -123,7 +123,7 @@
 
 						<li><a href="newer.do">신상품</a></li>
 
-						<li><a href="realTimeReview.do">실시간 후기</a></li>
+						<li><a href="realTimeReview.do?pageNum=1&amount=10">실시간 후기</a></li>
 
 						<li><a href="showNoticeBoard.do">공지사항</a></li>
 						</ul>

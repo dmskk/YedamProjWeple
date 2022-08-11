@@ -10,7 +10,7 @@
 			</h3>
 
 			<ul>
-				<c:forEach var="rv" items="${realTimeReviewList }">
+				<c:forEach var="rv" items="${realTimePagingList }">
 					<li class="flex-w flex-t p-b-30">
 						<a href="productDetail.do?prodId=${rv.prodId}" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
 							<img src=${rv.imgUrl } alt="PRODUCT" style="width: 90px;">
@@ -48,9 +48,22 @@
 						</div>
 					</li>
 				</c:forEach>	
-	
-					
 			</ul>
 		</div>
 	</div>
+		<div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
+	<c:if test="${pageInfo.prev }">
+		<a class="flex-c-m how-pagination1 trans-04 m-all-7"
+			href="realTimeReview.do?pageNum=${pageInfo.startPage - 1 }&amount=${pageInfo.cri.amount}">prev</a>
+	</c:if>
+	<c:forEach var="num" begin="${pageInfo.startPage }"
+		end="${pageInfo.endPage }">
+		<a class="flex-c-m how-pagination1 trans-04 m-all-7"
+			href="realTimeReview.do?pageNum=${num}&amount=${pageInfo.cri.amount}">${num }</a>
+	</c:forEach>
+	<c:if test="${pageInfo.next }">
+		<a class="flex-c-m how-pagination1 trans-04 m-all-7"
+			href="realTimeReview.do?pageNum=${pageInfo.endPage + 1 }&amount=${pageInfo.cri.amount}">next</a>
+	</c:if>
+</div>
 </section>

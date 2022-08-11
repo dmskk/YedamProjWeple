@@ -126,7 +126,7 @@ public class FrontController extends HttpServlet {
 		mappings.put("/addressListDefault.do", new addressListDefaultController());	//기본 배송지 조회
 		mappings.put("/addressUpdateForm.do", new addressListFormController());	//배송지 조회
 		mappings.put("/addressChange.do", new addressChangeController());	//기본 배송지로 지정
-		mappings.put("/addressOut.do", new addressOutController());	//기본 배송지로 지정
+		mappings.put("/addressOut.do", new addressOutController());	//기본 배송지에서 제외
     
 		
 		// 리뷰관련 mappings
@@ -171,7 +171,7 @@ public class FrontController extends HttpServlet {
 		//문의게시판
 		mappings.put("/qnaList.do", new QnaListController()); //상품상세페이지 상품 문의 목록 //(완료)
 		mappings.put("/myQnaListPaging.do", new MyQnaListPagingController()); // 내가 쓴 상품문의 목록(삭제까지 완료)
-		//mappings.put("/addQna.do", new AddQnaController()); // 리뷰등록 버튼 눌렀을떄 실행되는 애
+		//mappings.put("/addQna.do", new AddQnaController()); // 등록 버튼 눌렀을떄 실행되는 애
 		mappings.put("/insertQna.do", new InsertQnaController()); // 등록정보 보내는 애 //(완료)
 		mappings.put("/deleteQna.do", new DeleteQnaController());// (완료)
 		mappings.put("/updateQna.do", new UpdateQnaController());

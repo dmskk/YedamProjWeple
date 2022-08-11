@@ -4,77 +4,43 @@
 <html>
 <head>
     <script type="text/javascript" src="https://map.vworld.kr/js/webglMapInit.js.do?version=2.0&apiKey=2AC56E63-EB65-3EC3-818B-74F3582A0C2F"></script>
-
 <meta charset="UTF-8">
+    <title>WEPLE MARKET</title>
+    
+    <style>
+      body{
+        width: 900px;
+        height: 500px;
+      }
+
+      input{
+        background-color: #6c7ae0;
+        color: rgb(255, 255, 255);
+        margin-right: 6px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        border: none;
+        padding: 10px;
+        width: 100px;
+      }
+
+    </style>
 </head>
 <body>
-            <div class="section animated-row" data-section="slide02">
-                <div class="section-inner">
-                    <div class="about-section">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8 wide-col-laptop">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="about-contentbox">
-                                            <div class="animate" data-animate="fadeInUp">
-                                                <span>Available area</span>
-                                                <h2>공동 구매 가능 지역</h2>
-                                                <p>Credits go to <strong>Unsplash</strong> and <strong>Pexels</strong> for photos and video used in this template. Vivamus tincidunt, augue rutrum convallis volutpat, massa lacus tempus leo.</p>
-                                            </div>
-                                            <div class="facts-list owl-carousel">
-                                                <div class="item animate" data-animate="fadeInUp" onclick="vwmoveTo2(127.914481915959 , 36.444267225588 , 1000000)">
-                                                    <div class="counter-box">
-                                                       <span class="count-number">1212</span><br> All Area
-                                                    </div>
-                                                </div>
-                                                <div class="item animate" data-animate="fadeInUp" onclick="vwmoveTo(126.978229106965 , 37.5665711673465 , 270)">
-                                                    <div class="counter-box">
-                                                        <span class="count-number">631</span><br> Seoul
-                                                    </div>
-                                                </div>
-                                                <div class="item animate" data-animate="fadeInUp" onclick="vwmoveTo(126.43377108701 , 37.468649718031 , 4000)">
-                                                    <div class="counter-box">
-                                                        <span class="count-number">231</span><br> Incheon
-                                                    </div>
-                                                </div>
-                                                <div class="item animate" data-animate="fadeInUp" onclick="vwmoveTo(127.013258919229  , 37.2985453646613 , 350)">
-                                                    <div class="counter-box">
-                                                        <span class="count-number">532</span><br> GyeongGi
-                                                    </div>
-                                                </div>
-                                                <div class="item animate" data-animate="fadeInUp" onclick="vwmoveTo(128.595334593028 , 35.8664916093874 , 280)">
-                                                    <div class="counter-box">
-                                                        <span class="count-number">175</span><br> Deagu
-                                                    </div>
-                                                </div>
-                                                <div class="item animate" data-animate="fadeInUp" onclick="vwmoveTo(129.350203249641 , 35.4737048996921 , 2000)">
-                                                    <div class="counter-box">
-                                                        <span class="count-number">89</span><br> Ulsan
-                                                    </div>
-                                                </div>
-                                                <div class="item animate" data-animate="fadeInUp"  onclick="vwmoveTo(126.909795765774 , 35.1645575235227 , 150)">
-                                                    <div class="counter-box">
-                                                        <span class="count-number">78</span><br> GwanJu
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6" name="areacol">
-                                        <figure class="about-img animate" data-animate="fadeInUp">
-                                        <div id="vmap" style="width:900px;height:500px;left:0px;top:0px"></div>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+   
+    <input type="button" value="메인뷰" onclick="javascript:flyHome();"/>
+    <input type="button" onclick="vwmoveTo2(127.914481915959 , 36.444267225588 , 1000000)" value="전체조회">
+    <input type="button" onclick="vwmoveTo(126.978229106965 , 37.5665711673465 , 150)" value="서울">
+    <input type="button" onclick="vwmoveTo(126.43377108701 , 37.468649718031 , 2800)" value="인천">
+    <input type="button" onclick="vwmoveTo(127.013258919229  , 37.2985453646613 , 150)" value="경기">
+    <input type="button" onclick="vwmoveTo(128.595334593028 , 35.8664916093874 , 120)" value="대구">
+    <input type="button" onclick="vwmoveTo(129.350203249641 , 35.4737048996921 , 2000)" value="울산">
+    <input type="button" onclick="vwmoveTo(126.909795765774 , 35.1645575235227 , 80)" value="광주">
 
 
+<div id="vmap" style="width:100%;height:600px;left:0px;top:0px"></div>
 
- <script type="text/javascript">
+<script type="text/javascript">
         //지도 생성
         let mapOptions = new vw.MapOptions(
         vw.BasemapType.GRAPHIC, //2D 전용
@@ -139,7 +105,7 @@ var pop;
     var point1Coord = new vw.Coord(126.909795765774 , 35.1645575235227);
     var pt1 = new vw.geom.Point(point1Coord);
     pt1.setId("test1");
-    pt1.setName("광주 공동구매 x건 판매중");
+    pt1.setName("광주 공동구매 78건 판매중");
     pt1.setFont("나눔고딕");
     pt1.setFontSize(20);
     
@@ -147,7 +113,7 @@ var pop;
     var point2Coord = new vw.Coord(128.595334593028 , 35.8664916093874);
     var pt2 = new vw.geom.Point(point2Coord);
     pt2.setId("test2");
-    pt2.setName("대구 공동구매 x건 판매중");
+    pt2.setName("대구 공동구매 175 건 판매중");
     pt2.setFont("나눔고딕");
     pt2.setFontSize(20);
     pt2.create();
@@ -155,7 +121,7 @@ var pop;
     var point3Coord = new vw.Coord(126.978229106965 , 37.5665711673465);
     var pt3 = new vw.geom.Point(point3Coord);
     pt3.setId("test3");
-    pt3.setName("서울 공동구매 x건 판매중");
+    pt3.setName("서울 공동구매 631 건 판매중");
     pt3.setFont("나눔고딕");
     pt3.setFontSize(20);
     pt3.create();
@@ -163,7 +129,7 @@ var pop;
     var point4Coord = new vw.Coord(126.43377108701 , 37.468649718031);
     var pt4 = new vw.geom.Point(point4Coord);
     pt4.setId("test4");
-    pt4.setName("인천 공동구매 x건 판매중");
+    pt4.setName("인천 공동구매 231 건 판매중");
     pt4.setFont("나눔고딕");
     pt4.setFontSize(20);
     pt4.create();
@@ -171,7 +137,7 @@ var pop;
     var point5Coord = new vw.Coord(127.013258919229  , 37.2985453646613);
     var pt5 = new vw.geom.Point(point5Coord);
     pt5.setId("test5");
-    pt5.setName("경기 공동구매 x건 판매중");
+    pt5.setName("경기 공동구매 532 건 판매중");
     pt5.setFont("나눔고딕");
     pt5.setFontSize(20);
     pt5.create();
@@ -179,7 +145,7 @@ var pop;
     var point6Coord = new vw.Coord(129.350203249641 , 35.4737048996921);
     var pt6 = new vw.geom.Point(point6Coord);
     pt6.setId("test6");
-    pt6.setName("울산 공동구매 x건 판매중");
+    pt6.setName("울산 공동구매 89 건 판매중");
     pt6.setFont("나눔고딕");
     pt6.setFontSize(20);
     pt6.create();
@@ -190,35 +156,34 @@ var pop;
         
       
       //console.log("property :" , windowPosition, ecefPosition, cartographic, featureInfo);
-      //if ( featureInfo != null ) {
+      if ( featureInfo != null ) {
         // featureInfo 와 Point객체와는 다름.
         // Point 객체를 가져올 경우 featureInfo.groupId로 가져옴.(그룹별 아이디라기 보다는 개별아이디.)
 
-        var htmlt;
+        var html;
         var id = featureInfo.groupId;
         console.log(id)
         var pointObj = map.getObjectById( id );
         console.log("pointObj :" , pointObj);
 
         if (id == 'test1') {
-            htmlt = '광주<br> 공동구매 판매 상품 현황';
+            html = '광주<br> 공동구매 판매 상품 현황';
         }
         else if (id == 'test2') {
-            htmlt = '대구<br> 공동구매 판매 상품 현황';
+            html = '대구<br> 공동구매 판매 상품 현황';
         }
         else if (id == 'test3') {
-            htmlt = '서울<br> 공동구매 판매 상품 현황';
+            html = '서울<br> 공동구매 판매 상품 현황';
         }
         else if (id == 'test4') {
-            htmlt = '인천<br> 공동구매 판매 상품 현황';
+            html = '인천<br> 공동구매 판매 상품 현황';
         }
         else if (id == 'test5') {
-            htmlt = '경기<br> 공동구매 판매 상품 현황';
+            html = '경기<br> 공동구매 판매 상품 현황';
         }
         else if (id == 'test6') {
-            htmlt = '울산<br> 공동구매 판매 상품 현황';
+            html = '울산<br> 공동구매 판매 상품 현황';
         }
-        console.log(htmlt);
 
         
         
@@ -227,12 +192,12 @@ var pop;
         //html += '무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세~~';
         
         // 제목 title
-        var titlet = pointObj.getName();
+        var title = pointObj.getName();
         //_id, _container, _title, _html, _width, _height, _x, _y
         // 식별아이디, 탑재컨테이너, 제목, html, 레이어가로길이, 레이어세로길이, 클릭 이벤트X, 클릭 이벤트Y
-        pop = new vw.Popup("pop01", "vmap", titlet, htmlt, 450, 200, windowPosition.x, windowPosition.y);
+        pop = new vw.Popup("pop01", "vmap", title, html, 450, 300, windowPosition.x, windowPosition.y);
         pop.create();
-      //}      
+      }      
     }
     /* pt1.addEventListener(eventHandler);
     pt2.addEventListener(eventHandler);
@@ -334,6 +299,6 @@ var pop;
 
     
  </script>
-    
+
 </body>
 </html>

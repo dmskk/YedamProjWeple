@@ -17,6 +17,7 @@ import org.json.simple.parser.ParseException;
 import com.dev.dao.InventoryDAO;
 import com.dev.dao.ProductDAO;
 import com.dev.dao.UserDAO;
+import com.dev.vo.Criteria;
 import com.dev.vo.Inventory;
 import com.dev.vo.Product;
 
@@ -138,6 +139,11 @@ public class ProductService {
 	public List<Product> getMyJjimProd(String userId) {
 		return pdao.getMyJjimList(userId);
 	}
+  
+	public List<Product> jjimListPaging(Criteria cri, String userId){
+		return pdao.jjimListPaging(cri, userId);
+
+	}
 	
 	// 현재 prodId와 isShare여부로 현재 상품의 공동구매 인원 수 조회해오기
 	public int ParticipatePeopleNum(int prodId) {
@@ -146,6 +152,6 @@ public class ProductService {
 	// 공동구매 인원 수 업로드(누적, 빼기는 controller에서 처리하자)
 	public void updateParticipatePeople(int participate, int prodId) {
 		pdao.updateParticipatePeople(participate, prodId);
-	}
+
 }
 	

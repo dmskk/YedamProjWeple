@@ -275,7 +275,7 @@ public class BuyDAO extends DAO {
 			return orderProdList;
 		}
 		
-		// 리뷰 작성
+		// 리뷰 작성 - is_review =1
 		public void updateReview(int orderNum, int prodId) {
 			try {
 				connect();
@@ -290,4 +290,5 @@ public class BuyDAO extends DAO {
 				disconnect();
 			}
 		}
+		
 }

@@ -24,7 +24,9 @@ public class ReviewService {
 	
 	//리뷰등록
 	public void addReivew(ReviewInfo rvo, int orderNum) {
-		dao.addReivew(rvo);
+		//리뷰 등록하고
+		dao.addReivew(rvo, orderNum);
+		//is_review = 1로 바꿔주고
 		bdao.updateReview(orderNum, rvo.getProdId());
 	}
 	//리뷰 리스트 출력
@@ -75,11 +77,17 @@ public class ReviewService {
 		return dao.realTimeReviewList();
 	}
 	
+	public List<ProdReview> rtPagingList(Criteria cri){
+		return dao.rtPagingList(cri);
+	}
+	
 	
 	// 내가 쓴 상품 리뷰
 	public Board selectProdReview(int orderNum, int prodId) {
 		return dao.selectProdReview(orderNum, prodId);
 	}
+	
+	
 	
 	
 }
