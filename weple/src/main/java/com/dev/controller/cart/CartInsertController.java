@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import com.dev.common.Utils;
 import com.dev.controller.Controller;
 import com.dev.service.cart.CartService;
+import com.dev.service.product.ProductService;
 import com.dev.vo.Buy;
 import com.dev.vo.Cart;
 import com.dev.vo.Product;
@@ -48,15 +49,20 @@ public class CartInsertController implements Controller {
 			cartProduct.setIsShare(isShare);
 			service.insertIntoCart(cartProduct);
 		}
-		
-//		3-3. 있으면 수량 변경
+
 		else {
 			int prevAmount = isExist.getBuyAmount();
 			buyAmount += prevAmount;
 			service.updateCart(prodId, buyAmount, userId, isShare);
 		}
 		
-		
+		// 공동구매일 경우 그 수량만큼 공동구매 인원 수정하기
+		if (isShare == 1) {
+		ProductService productService = ProductService.getInstance();
+		int nowParticipate = productService.ParticipatePeopleNum(prodId);
+		int upParticipate = nowParticipate + buyAmount;
+		productService.updateParticipatePeople(upParticipate, prodId);
+		}
 //		끝
 		resp.getWriter().print("success");
 		

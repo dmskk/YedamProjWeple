@@ -117,12 +117,13 @@ public class NoticeDAO extends DAO {
 	// 댓글 수정
 	public void updateComments(Comments comments) {
 		try {
+			System.out.println(comments.getReple());
+			System.out.println(comments.getRepleNum());
 			connect();
-			String sql = "update comments set reple = '' where bno = ? and reple_num = ?";
+			String sql = "update comments set reple = ? where reple_num = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, comments.getReple());
-			pstmt.setInt(2, comments.getBno());
-			pstmt.setInt(3, comments.getRepleNum());
+			pstmt.setInt(2, comments.getRepleNum());
 			
 			int r = pstmt.executeUpdate();
 			if (r > 0) {
@@ -162,7 +163,7 @@ public class NoticeDAO extends DAO {
 	public void insertComments(Comments comments) {
 		try {
 			connect();
-			String sql = "insert into comments (?, reple_num_seq.nextval, ?, ?, ?)";
+			String sql = "insert into comments values (?, reple_num_seq.nextval, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, comments.getBno());
 			pstmt.setString(2, comments.getUserId());

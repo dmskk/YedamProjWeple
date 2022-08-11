@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.dev.dao.BuyDAO;
 import com.dev.vo.Buy;
+import com.dev.vo.Cart;
 import com.dev.vo.OrderHisDetail;
 
 
@@ -25,10 +26,13 @@ public class BuyService {
 		return buyService;
 	} 
 	
-	
+	// 장바구니 상품 전체 조회
+	public List<Cart> showCart(String userId) {
+		return bDAO.showCart(userId);
+	}
 	// 선택한 상품의 id로 장바구니에서 실행하는 메소드 만들기
-	public void deleteFromCart(int prodId, String userId) {
-		bDAO.deleteFromCart(prodId, userId);
+	public void deleteFromCart(int prodId, String userId, int isShare) {
+		bDAO.deleteFromCart(prodId, userId, isShare);
 	}
 	
 	// buy_process에 insert하는 메소드(공동구매 여부에 따라서 0, 1)

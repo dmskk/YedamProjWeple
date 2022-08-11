@@ -480,5 +480,48 @@ public class ProductDAO extends DAO {
 		return list;
 	}
 
+ 	// 현재 prodId와 isShare여부로 현재 상품의 공동구매 인원 수 조회해오기
+	public int ParticipatePeopleNum(int prodId) {
+		int participate = 0;
+		try {
+			connect();
+			String sql = "select participate_people from products where prod_id = ? and is_share = 1";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, prodId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				participate = rs.getInt("participate_people");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return participate;
+	}
+	
+	
+	// 공동구매 인원 수 업로드(누적, 빼기는 controller에서 처리하자)
+	public void updateParticipatePeople(int participate, int prodId) {
+		try {
+			connect();
+			String sql = "update products set participate_people = ? where prod_id = ? and is_share = 1";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, prodId);
+			pstmt.setInt(2, prodId);
+			
+			int r = pstmt.executeUpdate();
+			if(r>0) { 
+				System.out.println("공동구매인원 수정 완료");
+			} else {
+				System.out.println("공동구매인원 수정 실패");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+	
 }
 

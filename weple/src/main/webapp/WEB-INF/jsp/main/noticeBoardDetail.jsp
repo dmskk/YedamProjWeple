@@ -51,8 +51,8 @@ td, th {
 		</div>
 	</div>
 </section>
-<c:if test="${empty userId }">
-	<input type="button" id="createBtn" value="댓글달기">
+<c:if test="${userId != null }">
+	<input type="button" id="createBtn" value="댓글달기" onclick="location.href = 'sendToCreateComments.do?bno=${notice.bno}'">
 </c:if>
 <table id="commentTable">
 		<tr>
