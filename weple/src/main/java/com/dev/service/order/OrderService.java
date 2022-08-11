@@ -4,6 +4,7 @@ package com.dev.service.order;
 import java.util.List;
 
 import com.dev.dao.OrderDAO;
+import com.dev.vo.Criteria;
 import com.dev.vo.Order;
 import com.dev.vo.OrderProduct;
 
@@ -44,6 +45,11 @@ public class OrderService {
 	// sequence(주문번호)가장 높은거 select해오는 메소드(가장 최근 주문번호가지고 오기 위해서)
 	public Order selectNewOrder() {
 		return oDAO.selectNewOrder();
+	}
+	
+	// 리스트 페이징
+	public List<Order> showOrderListPaging(Criteria cri, String userId) {
+		return oDAO.showOrderListPaging(cri, userId);
 	}
 	
 }

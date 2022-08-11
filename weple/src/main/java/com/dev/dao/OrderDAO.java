@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dev.common.DAO;
+import com.dev.vo.Criteria;
 import com.dev.vo.Order;
 import com.dev.vo.OrderProduct;
+import com.dev.vo.Product;
 
 public class OrderDAO extends DAO {
 	// 싱글톤
@@ -146,6 +148,42 @@ public class OrderDAO extends DAO {
 				disconnect();
 			}
 			return record;
+		}
+		
+		// 리스트 페이징
+		public List<Order> showOrderListPaging(Criteria cri, String userId) {
+			List<Order> list = new ArrayList<>();
+			
+			String sql = "select order_num, order_price, order_date from "
+					+ "(select order_num, order_price, order_date, rownum rn from  "
+					+ "(select order_num, order_price, order_date from orders where user_id = ? order by order_num desc) "
+					+ "where rownum <=?) "
+					+ "where rn>=?";
+			
+			try {
+				connect();
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, userId);
+				pstmt.setInt(2, cri.getAmount() * cri.getPageNum()); // 10 * 1;
+				pstmt.setInt(3, cri.getAmount() * (cri.getPageNum() - 1)); // 10
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					Order or = new Order();
+					or.setOrderNum(rs.getInt("order_num"));
+					or.setOrderPrice(rs.getInt("order_price"));
+					or.setOrderDate(rs.getString("order_date"));
+					list.add(or);
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+			return list;
 		}
 
 		
