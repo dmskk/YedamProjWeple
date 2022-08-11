@@ -72,7 +72,9 @@ function prodList(result) {
 									class="card-img-top" src="${result[i].imgUrl}" alt=""></a>
 								<div class="card-body">
 									<h4 class="card-title">
-										<a href="productDetail.do?prodId=${result[i].prodId}">${result[i].prodName}</a>
+										<a href="productDetail.do?prodId=${result[i].prodId}">
+											${result[i].prodName}
+										</a>
 									</h4>
 									<h5>${result[i].prodPrice}원</h5>
 									<p class="card-text">
@@ -92,18 +94,17 @@ function prodList(result) {
 		
 
 		prod_html += `<label for="heart${result[i].prodId}" onclick="jjimclick(${result[i].prodId})" > ❤</label> 
-						<span id="total${result[i].prodId}">${result[i].totaljjim}</span>
-					</div>`;
+						<span id="total${result[i].prodId}">${result[i].totaljjim}</span>`;
 					
 		/* 평균별점 */
 		if (result[i].avgStar == 99.9) {
-			prod_html += `⭐리뷰없음`;
+			prod_html += `<span style="padding-left: 105px; color: transparent; text-shadow: 0 0 0 #aab8c2;">⭐</span>리뷰없음`;
 		} else {
-			prod_html += `⭐${result[i].avgStar}`;
+			prod_html += `<span style="padding-left: 140px;">⭐</span>${result[i].avgStar}`;
 		}
 		/* 평균별점 끝 */
 		
-		prod_html += `</div></div></div>`;
+		prod_html += `</div></div></div></div>`;
 		
 		template.innerHTML += prod_html;
 	}

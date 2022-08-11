@@ -40,35 +40,14 @@ public class insertOrderController implements Controller {
 		@SuppressWarnings("unchecked")
 		List<Cart> cartList = (List<Cart>) session.getAttribute("cartList");
 		
-		int prodId;
-		String prodName;
-		int isShare;
-		int prodAmount;
 		int totalPrice;
 		int orderPrice = 0;
-		
-		// orderService에서 주문번호(sequence)가장 높은거 select해오기
-		// 아직 주문 하고 새로운 orderNum이 들어오지 않았으므로 +1하자
-		Order order = orderService.selectNewOrder();
-		int orderNum = order.getOrderNum();
-		
-		System.out.println(orderNum);
-		
-		// for문돌면서 안의 상품정보를 업데이트하기
+	
 		// totalPrice로 orderPrice계산하기
 		for(int i = 0; i < cartList.size(); i++) {
-			totalPrice = cartList.get(i).getTotalPrice();
-			
-			Buy buyProd = new Buy();
-			buyProd.setUserId(userId);
-			buyProd.setProdId(cartList.get(i).getProdId());
-			buyProd.setOrderNum(orderNum+1);
-			
-			buyService.updateOrderComplete(buyProd);
-			
-			orderPrice += totalPrice;
+			orderPrice += cartList.get(i).getTotalPrice();
 		}
-		
+		// orderPrice에 배송비 추가하기
 		if(user.getGrade() == 1) {
 			orderPrice += 3500;
 		} else if (user.getGrade() == 2) {
@@ -77,7 +56,7 @@ public class insertOrderController implements Controller {
 
 		
 		// 주문내역 목록 orders테이블에 넣기
-		// userId, orderNum(시퀀스), orderPrice, orderInfo, orderDate
+		// userId, orderPrice, orderInfo
 		String orderInfo = req.getParameter("orderInfo");
 
 		Order order1 = new Order();
@@ -86,7 +65,17 @@ public class insertOrderController implements Controller {
 		order1.setOrderInfo(orderInfo);
 		order1.setOrderPrice(orderPrice);
 
-		orderService.insertIntoOrders(order1);
+		// orderNum 가져오기
+		int orderNum = orderService.insertIntoOrders(order1);
+		
+		// buy_process테이블에 orderNum 업데이트하기
+		for(Cart cartProd : cartList) {
+			Buy buyProd = new Buy();
+			buyProd.setUserId(userId);
+			buyProd.setProdId(cartProd.getProdId());
+			buyProd.setOrderNum(orderNum);
+			buyService.updateOrderComplete(buyProd);
+		}
 
 		
 		Utils.forward(req, resp, "user/orderComplete.tiles");

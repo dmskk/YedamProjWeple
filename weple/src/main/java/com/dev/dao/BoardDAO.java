@@ -14,8 +14,8 @@ import com.dev.vo.ReviewInfo;
 
 public class BoardDAO extends DAO {
 
-	public void addReivew(ReviewInfo rvo) {
-		String sql = "INSERT into boards(bno, writer, board_content, prod_id, write_date, board_type, cnt) values(board_num_seq.nextval,?,?,?,sysdate, 3, ?)";
+	public void addReivew(ReviewInfo rvo, int orderNum) {
+		String sql = "INSERT into boards(bno, writer, board_content, prod_id, write_date, board_type, cnt, order_num) values(board_num_seq.nextval,?,?,?,sysdate, 3, ?, ?)";
 		connect();
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -23,6 +23,7 @@ public class BoardDAO extends DAO {
 			pstmt.setString(2, rvo.getBoardContent());
 			pstmt.setInt(3, rvo.getProdId());
 			pstmt.setInt(4, rvo.getRating());
+			pstmt.setInt(5, orderNum);
 
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건 입력");
@@ -389,7 +390,7 @@ public class BoardDAO extends DAO {
 				bo.setWriteDate(rs.getString("write_date"));
 				bo.setBno(rs.getInt("bno"));
 				bo.setProdId(prodId);
-				bo.setIsHandled(rs.getInt("in_handled"));
+				bo.setIsHandled(rs.getInt("is_handled"));
 				bo.setRepsComment(rs.getString("reps_comment"));
 				bo.setOrderNum(rs.getInt("order_num"));
 				bo.setCNT(rs.getInt("cnt"));
@@ -400,5 +401,22 @@ public class BoardDAO extends DAO {
 			disconnect();
 		}
 		return bo;
+	}
+	
+
+	// 리뷰 작성 - order_num 추가
+	public void updateOrderNum(int orderNum, int bno) {
+		try {
+			connect();
+			String sql = "update boards set order_num = ? where bno = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, orderNum);
+			pstmt.setInt(2, bno);
+			pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
 	}
 }

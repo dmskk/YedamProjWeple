@@ -21,7 +21,7 @@ public class MyProdReviewController implements Controller {
 		ReviewService service = ReviewService.getInstance();
 		Board bo = service.selectProdReview(orderNum, prodId);
 		
-		req.setAttribute("boardVO", bo);
+		req.setAttribute("thisBD", bo);
 		
 		Utils.forward(req, resp, "user/myProdReview.tiles");
 	}
