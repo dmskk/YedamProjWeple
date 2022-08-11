@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import com.dev.controller.Controller;
 import com.dev.service.cart.CartService;
+import com.dev.service.product.ProductService;
 
 public class CartUpdateController implements Controller {
 
@@ -30,6 +31,14 @@ public class CartUpdateController implements Controller {
 		
 		System.out.println(result);
 		
+		// 공동구매일 경우 그 수량만큼 participate_people 업데이트
+		if (isShare == 1) {
+			ProductService productService = ProductService.getInstance();
+			int nowParticipate = productService.ParticipatePeopleNum(prodId);
+			int upParticipate = nowParticipate + prodAmount;
+			
+			productService.updateParticipatePeople(upParticipate, prodId);
+			}
 		resp.getWriter().print(result);
 	
 	}

@@ -45,8 +45,8 @@ public class CartService {
 	}
 	
 	// 장바구니에서 상품 삭제
-	public boolean deleteFromCart(int prodId, String userId) {
-		return dao.deleteFromCart(prodId, userId);
+	public boolean deleteFromCart(int prodId, String userId, int isShare) {
+		return dao.deleteFromCart(prodId, userId, isShare);
 	}
 	
 	// 장바구니 비우기

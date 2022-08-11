@@ -138,13 +138,14 @@ public class BuyDAO extends DAO {
 	// 선택한 상품 구매
 	 
 	// 장바구니에서 상품 삭제
-	public boolean deleteFromCart(int prodId, String userId) {
+	public boolean deleteFromCart(int prodId, String userId, int isShare) {
 		try {
 			connect();
-			String sql = "delete from buy_process where prod_id = ? and user_id = ? and is_cart = 1";
+			String sql = "delete from buy_process where prod_id = ? and user_id = ? and is_cart = 1 and is_share = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, prodId);
 			pstmt.setString(2, userId);
+			pstmt.setInt(3, isShare);
 			int r = pstmt.executeUpdate();
 			if (r>0) {
 				System.out.println("장바구니에서 상품 삭제 완료");
@@ -185,6 +186,7 @@ public class BuyDAO extends DAO {
 			connect();
 			String sql = "update buy_process set is_buy = 1, "
 					+ "order_num = ?, is_cart = 0 where prod_id = ? and user_id = ? and is_cart = 1";
+			System.out.println(buy.getOrderNum());
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, buy.getOrderNum());
 			pstmt.setInt(2, buy.getProdId());

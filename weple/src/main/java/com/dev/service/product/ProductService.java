@@ -138,5 +138,14 @@ public class ProductService {
 	public List<Product> getMyJjimProd(String userId) {
 		return pdao.getMyJjimList(userId);
 	}
+	
+	// 현재 prodId와 isShare여부로 현재 상품의 공동구매 인원 수 조회해오기
+	public int ParticipatePeopleNum(int prodId) {
+		return pdao.ParticipatePeopleNum(prodId);
+	}
+	// 공동구매 인원 수 업로드(누적, 빼기는 controller에서 처리하자)
+	public void updateParticipatePeople(int participate, int prodId) {
+		pdao.updateParticipatePeople(participate, prodId);
+	}
 }
 	

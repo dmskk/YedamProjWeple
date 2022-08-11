@@ -36,7 +36,10 @@ import com.dev.controller.mypage.addressListDefaultController;
 import com.dev.controller.mypage.addressListFormController;
 import com.dev.controller.mypage.addressOutController;
 import com.dev.controller.mypage.addressUpdateController;
+import com.dev.controller.notice.CreateCommentsController;
 import com.dev.controller.notice.DeleteCommentsController;
+import com.dev.controller.notice.SendRepleNumController;
+import com.dev.controller.notice.SendToCreateCommentsController;
 import com.dev.controller.notice.ShowCommentsController;
 import com.dev.controller.notice.ShowNoticeBoardController;
 import com.dev.controller.notice.ShowNoticeDetailController;
@@ -180,6 +183,9 @@ public class FrontController extends HttpServlet {
 		mappings.put("/showComments.do", new ShowCommentsController());
 		mappings.put("/deleteComments.do", new DeleteCommentsController());
 		mappings.put("/updateComments.do", new UpdateCommentsController());
+		mappings.put("/sendRepleNum.do", new SendRepleNumController());
+		mappings.put("/createComments.do", new CreateCommentsController());
+		mappings.put("/sendToCreateComments.do", new SendToCreateCommentsController());
 	}
 	
 	@Override

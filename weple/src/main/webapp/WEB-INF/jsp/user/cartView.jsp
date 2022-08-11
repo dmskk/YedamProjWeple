@@ -44,6 +44,9 @@
 												<div class="hidden" style="display: none;">`;
 							table_html += req[i].prodId;
 							table_html += `</div>
+							table_html +=	`<div class="hiddenProdAmount" style="display: none;">`;
+							table_html += req[i].prodAmount;
+							table_html += `</div>
 											<div class="hiddenIsShare" style="display: none;">1</div>
 											<div class="how-itemcart1">
 											<img src="`;
@@ -170,13 +173,15 @@
 		$(document).on("click", ".how-itemcart1", function(event) {
 			var deleteBtn = $(event.target);
 			var prodId = deleteBtn.parent().children(".hidden").text();
+			var isShare = deleteBtn.parent().children(".hiddenIsShare").text();
+			var prodAmount = deleteBtn.parent().children(".prodAmount").text();
 			console.log(prodId);
+			console.log(isShare);
 			
 			fetch('deleteCart.do', {
 				method: 'post',
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
-				body: 'prodId='+prodId
-
+				body: 'prodId=' + prodId + '&isShare=' + isShare + '&prodAmount=' + prodAmount
 				})
 				.then(result => result.text())
 				.catch(err => console.log(err));

@@ -22,6 +22,7 @@ public class ShowNoticeDetailController implements Controller {
 		int bno = Integer.parseInt(req.getParameter("bno"));
 		NoticeService noticeService = NoticeService.getInstance();
 		
+		// 조회수 업로드
 		// 클릭한 board를 보여주는 메소드를 실행
 		Board notice = noticeService.showOneNotice(bno);
 		// 그 board의 cnt를 받아와서
