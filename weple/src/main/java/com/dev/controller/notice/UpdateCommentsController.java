@@ -29,7 +29,7 @@ public class UpdateCommentsController implements Controller {
 		
 		noticeService.updateComments(comments);
 		
-		Utils.forward(req, resp, "main/updateMessageShow.tiles");
+		resp.getWriter().print(updateComment);
 		
 	}
 

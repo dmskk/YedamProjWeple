@@ -92,7 +92,7 @@ public class NoticeDAO extends DAO {
 		List<Comments> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "select * from comments where bno = ?";
+			String sql = "select * from comments where bno = ? order by reple_num desc";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bno);
 			rs = pstmt.executeQuery();
@@ -180,5 +180,25 @@ public class NoticeDAO extends DAO {
 		} finally {
 			disconnect();
 		}
+	}
+
+	public int getCommentNum(String userId) {
+		
+		try {
+			connect();
+			String sql = "select max(reple_num) reple_num from comments where user_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("reple_num");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		
+		return 0;
 	}
 }
