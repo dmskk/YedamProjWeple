@@ -153,5 +153,6 @@ public class ProductService {
 	public void updateParticipatePeople(int participate, int prodId) {
 		pdao.updateParticipatePeople(participate, prodId);
 
+	}
 }
 	
