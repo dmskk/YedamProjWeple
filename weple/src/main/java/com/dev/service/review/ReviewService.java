@@ -77,11 +77,17 @@ public class ReviewService {
 		return dao.realTimeReviewList();
 	}
 	
+	public List<ProdReview> rtPagingList(Criteria cri){
+		return dao.rtPagingList(cri);
+	}
+	
 	
 	// 내가 쓴 상품 리뷰
 	public Board selectProdReview(int orderNum, int prodId) {
 		return dao.selectProdReview(orderNum, prodId);
 	}
+	
+	
 	
 	
 }

@@ -39,5 +39,21 @@
 	</table>
 </div>
 
+<div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
+	<c:if test="${pageInfo.prev }">
+		<a class="flex-c-m how-pagination1 trans-04 m-all-7"
+			href="jjim.do?pageNum=${pageInfo.startPage - 1 }&amount=${pageInfo.cri.amount}">prev</a>
+	</c:if>
+	<c:forEach var="num" begin="${pageInfo.startPage }"
+		end="${pageInfo.endPage }">
+		<a class="flex-c-m how-pagination1 trans-04 m-all-7"
+			href="jjim.do?pageNum=${num}&amount=${pageInfo.cri.amount}">${num }</a>
+	</c:forEach>
+	<c:if test="${pageInfo.next }">
+		<a class="flex-c-m how-pagination1 trans-04 m-all-7"
+			href="jjim.do?pageNum=${pageInfo.endPage + 1 }&amount=${pageInfo.cri.amount}">next</a>
+	</c:if>
+</div>
+
 <script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/jjim.js"></script>
