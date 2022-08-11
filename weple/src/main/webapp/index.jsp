@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
 
-    <title>Elegance - Creative HTML5 Template</title>
+    <title>WEPLE MARKET</title>
 <!--
 Elegance Template
 https://templatemo.com/tm-528-elegance
@@ -164,7 +164,7 @@ https://templatemo.com/tm-528-elegance
                                     </div>
                                     <div class="col-md-6" name="areacol">
                                         <figure class="about-img animate" data-animate="fadeInUp">
-                                        <a href="welcomePage/map.jsp" onClick="window.open(this.href, '', 'width=400, height=430'); return false;">
+                                        <a href="welcomePage/map.jsp" onClick="window.open(this.href, '', 'width=910, height=650, scrollbars=no, resizable=no, toolbars=no, menubar=no'); return false;">
                                         <img src="images/map.gif" name="smap" class="rounded" alt="" style = "height:420px;width:600px; opacity: 0.8;">
                                         </a>
                                         <!-- <div id="vmap" style="width:900px;height:500px;left:0px;top:0px"></div> -->
