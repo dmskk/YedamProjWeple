@@ -123,7 +123,7 @@ public class FrontController extends HttpServlet {
 		mappings.put("/addressListDefault.do", new addressListDefaultController());	//기본 배송지 조회
 		mappings.put("/addressUpdateForm.do", new addressListFormController());	//배송지 조회
 		mappings.put("/addressChange.do", new addressChangeController());	//기본 배송지로 지정
-		mappings.put("/addressOut.do", new addressOutController());	//기본 배송지로 지정
+		mappings.put("/addressOut.do", new addressOutController());	//기본 배송지에서 제외
     
 		
 		// 리뷰관련 mappings

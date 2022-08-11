@@ -5,198 +5,399 @@
 
 <head>
 <meta charset="utf-8">
-<title>userInsert</title>
-<style>
-@import
-	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap')
-	;
+<title>WEPLE MARKET</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
 
-@import
-	url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;500&display=swap')
-	;
-
-* {
-	box-sizing: border-box;
 }
 
-body {
-	background: #EDEDEE;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-family: 'Raleway', sans-serif;
-	height: 100vh;
+.accoutn_main{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
 }
 
-h2 {
-	font-weight: bold;
-	margin: 0;
+.accoutn_main .video{
+    position: absolute;
+    z-index: -100;
+    height: 100%;
+    margin-left: 295px;
 }
 
-p {
-	font-size: 10px;
+.form_area{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 200%;
+    background: radial-gradient(circle at 250% 50%, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 40%, #ffffff 100%);
+}
+.main_con{
+    position: absolute;
+    padding: 50px;
+    padding-top:15px;
+    width: 500px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.137);
+}   
+.headline h1{
+    text-align: right;
+    color: #6c7ae0;
+    margin-top : 0px;
+    margin-bottom: 5px;
+    letter-spacing:13px
+}
+.headline2 h1{
+    color: #6c7ae0;
+}
+.headline{
+    text-align: center;
+    color: #ffffff;
+    margin-top : 0px;
+    letter-spacing:10px
+}
+.headline2{
+    text-align: right;
+    color: #df973a;
+    margin-top : 200px;
+    letter-spacing:10px
+}
+.button span{
+    text-align: center;
+    color: #ffffff;
+    letter-spacing:10px
 }
 
-a {
-	font-size: 12px;
-	text-decoration: none;
-	margin: 15px;
+.form_con{
+    position: relative;
+    padding: 30px;
+    width: 100%;
 }
 
-.button {
-	border: none;
-	font-size: 12px;
-	padding: 12px 45px;
-	background-color: #a7a7ac;
+.form_con h2{
+    margin: 0 30px;
+    padding: 0;
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    letter-spacing:10px
+    
 }
 
-form {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	padding: 50px;
-	height: 100%;
+.form_con .input-box{
+    position: relative;
 }
 
-.input {
-	border: 1px solid;
-	padding: 12px;
-	margin: 5px;
-	width: 100%;
+.form_con .input-box input{
+    width: 100%;
+    padding: 8px 0;
+    font-size: 10px;
+    color: #fff;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
 }
 
-.container {
-	border: 1px solid;
-	border-radius: 10px;
-	position: relative;
-	width: 770px;
-	max-width: 100%;
-	min-height: 480px;
+.form_con .input-box label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
 }
 
-.form {
-	position: absolute;
-	top: 0;
-	height: 100%;
+.form_con .input-box input:focus + label,
+.form_con .input-box input:valid + label{
+    top: -25px;
+    left: 0;
+    color: #fff;
+    font-size: 15px;
 }
 
-.signup-container {
-	right: 50px;
-	width: 50%;
+.form_con .button{
+    text-align: center;
+}
+.form_con button{
+    font-size: 15px;
+    padding: 8px 20px;
+    background: none;
+    border: 2px solid #6c7ae0;
+    cursor: pointer;
+    color: #6c7ae0;
+    text-align: center;
+    border-radius: 5px;
+    letter-spacing:7px
 }
 
-.container2 {
-	position: absolute;
-	top: 0;
-	right: 65%;
-	width: 35%;
-	height: 100%;
-	background-color: rgb(187, 187, 187);
+.form_con button:hover{
+    background: #DDDDDD;
+    color: #ffffff;
+    border-radius: 5px;
 }
 
-.signup {
-	text-align: center;
-	padding: 180px 0px;
+
+
+.form_con2{
+    position: relative;
+    padding: 30px;
+    width: 100%;
 }
 
-.gender {
-	position: relative;
-	margin: 0 auto;
-	width: 100%;
-	margin: 10px;
+.form_con2 h2{
+    margin: 0 30px;
+    padding: 0;
+    font-size: 15px;
+    color: #fff;
+    text-align: right;
+    letter-spacing:10px
+    
 }
 
-.adr {
-	margin-bottom: 10px;
+.form_con2 .input-box{
+    position: relative;
+}
+
+.form_con2 .input-box input{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 10px;
+    color: #fff;
+    margin-bottom: 25px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.form_con2 .input-box label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.form_con2 .input-box input:focus + label,
+.form_con2 .input-box input:valid + label{
+    top: -25px;
+    left: 0;
+    color: #fff;
+    font-size: 15px;
+}
+
+.form_con2 .button2{
+    text-align: right;
+}
+.form_con2 button{
+    font-size: 15px;
+    padding: 15px 80px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    background-color: #6c7ae0;
+    color: #ffffff;
+    text-align: right;
+    border-radius: 5px;
+    letter-spacing:7px
+}
+
+.form_con2 button:hover{
+    background: #DDDDDD;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.hidden{
+    display: none;
+}
+
+.text-center{
+    text-align: center;
+    color: #fff;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.right{
+    width: 800px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+}
+.gohome{
+    text-decoration: none;
+    color: #6c7ae0;
+    font-weight: 700;
+}
+#domain-list{
+	color:rgb(255, 255, 255);
+	background-color:rgba(160, 160, 160, 0.459);
+  border: none;
+}
+#phone-list{
+	color:rgb(255, 255, 255);
+	background-color:rgba(160, 160, 160, 0.459);
+  border: none;
+}
+#gender{
+	color:rgb(255, 255, 255);
+	background-color:rgba(160, 160, 160, 0.459);
+  border: none;
 }
 </style>
 </head>
 
 
 <body>
-	<div class="container">
-
-		<div class="container2">
-			<div class="signup">
-				<h2>Welcome to With+</h2>
-				<p>test 공동구매는 가입이 필요합니다 tset</p>
-				<button class="button" onclick="location.href='account/login.tiles' ">Login</button>
-			</div>
-				<a href="${pageContext.request.contextPath }/index.jsp">홈으로</a>
-
-		</div>
-		<div class="form signup-container">
-			<form action="${pageContext.request.contextPath }/userInsert.do"
-				method="post" name="signupForm">
-				<h2>With+ Logo</h2>
-
-				<input class="input" type="text" name="id" id="id" placeholder="User ID"> 
-				<input type="button" value="중복체크" onclick="idCheck()">
-				<input type="hidden" name="idDuplication" value="idUncheck">
-				
-				<input class="input" type="password" name="password" id="password" placeholder="Password">
-				<input class="input" type="password" name="passwordCheck" id="passwordCheck" placeholder="Password Check">
-
-				<input id="email-id" type="text" name="mail1" />
-				@ <input id="domain-txt" type="text" name="mail2" />
-				<select id="domain-list" name="domain-list">
-					<option value="type">-select-</option>
-					<option value="naver.com">naver.com</option>
-					<option value="google.com">google.com</option>
-					<option value="gmail.com">gmail.com</option>
-					<option value="hanmail.net">hanmail.net</option>
-					<option value="nate.com">nate.com</option>
-					<option value="kakao.com">kakao.com</option>
-					<option value="type">직접 입력</option>
-				</select>
-				<input type="button" value="중복체크" onclick="mailCheck()">
-				
-				
-				<input class="input" type="text" name="name" placeholder="Name" id="name">
+        <div class="accoutn_main">
+            <video muted loop autoplay class="video">
+                <source src="images/cart.mp4" type="video/mp4">
+            </video>
+    
+            <div class="form_area">
 
 
-				<div class="adr">
-					<input type="text" id="postcode" placeholder="우편번호" name="post">
-					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" id="address" placeholder="주소" name="address1"><br>
-					<input type="text" id="detailAddress" placeholder="상세주소" name="address2">
-					<input type="text" id="extraAddress" placeholder="참고주소" name="address3">
-				</div>
+                <div class="main_con">
+                    <div class="headline">
+
+                    </div>
+    
+                    <div class="form_con">
+                        <div class="log_form">
+                            
+                           <form action="${pageContext.request.contextPath }/userInsert.do" method="post" name="signupForm" id="signupForm">
+                                <div class="input-box">
+                                    <input class="input" type="text" name="id" id="id">
+                                    <label>User ID</label>
+                                    <input type="button" value="중복체크" onclick="idCheck()" style="border:1px solid white;">
+									<input type="hidden" name="idDuplication" value="idUncheck">
+                                </div>
+                                <div class="input-box">
+                                    <input class="input" type="password" name="password" id="password">
+                                    <label>Password</label>
+                                </div>
+                                <div class="input-box">
+                                    <input class="input" type="password" name="passwordCheck" id="passwordCheck">
+                                    <label>Password Check</label>
+                                </div>
+                                
+                                <div class="input-box">
+                                 	<input id="email-id" type="text" name="mail1" style="width: 100px" />
+                                 	<span style="color:white">@</span>
+									<input id="domain-txt" type="text" name="mail2" style="width: 100px" />
+								<label>Email</label>
+								<select id="domain-list" name="domain-list">
+									<option value="type">-select-</option>
+									<option value="naver.com">naver.com</option>
+									<option value="google.com">google.com</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="hanmail.net">hanmail.net</option>
+									<option value="nate.com">nate.com</option>
+									<option value="kakao.com">kakao.com</option>
+									<option value="type">직접 입력</option>
+								</select>
+								<input type="button" value="중복체크" onclick="mailCheck()" style="border:1px solid white;">
+                                </div>
+
+                                <div class="input-box">
+                                    <input class="input" type="text" name="name" id="name">
+                                    <label>Name</label>
+                                </div>
+
+                                <div class="input-box">
+                                    <label>Address</label>
+                                    <br>
+					   				<div class="adr">
+										<input type="text" id="postcode" placeholder="우편번호" name="post" style="width: 60px">
+										<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 60px"><br>
+										<input type="text" id="address" placeholder="주소" name="address1" style="width: 180px">
+										<input type="text" id="detailAddress" placeholder="상세주소" name="address2" style="width: 70px">
+										<input type="text" id="extraAddress" placeholder="참고주소" name="address3" style="width: 70px">
+									</div>
+                                </div>
 
 
-				<select id="phone-list">
-					<option value="select">-select-</option>
-					<option value="010">010</option>
-					<option value="011">011</option>
-					<option value="02">02</option>
-					<option value="031">031</option>
-					<option value="051">051</option>
-					<option value="053">053</option>
-					<option value="type2">직접 입력</option>
-				</select>
-				<input id="phone1" type="text" name="pnum1" />
-				<input id="phone2" type="text" name="pnum2" />
-				<input id="phone3" type="text" name="pnum3" />
-				<input type="button" value="중복체크" onclick="phoneCheck()">
-				
-				<input class="input" type="date" name="birth" id="bday">
+                                <div class="input-box">
+                                    <label>Tel</label><br><br>
+                                    	<select id="phone-list">
+											<option value="select">-select-</option>
+											<option value="010">010</option>
+											<option value="011">011</option>
+											<option value="02">02</option>
+											<option value="031">031</option>
+											<option value="051">051</option>
+											<option value="053">053</option>
+											<option value="type2">직접 입력</option>
+										</select>
+									<input id="phone1" type="text" name="pnum1" style="width: 75px" />
+									<span style="color:white">-</span>
+									<input id="phone2" type="text" name="pnum2" style="width: 75px" />
+									<span style="color:white">-</span>
+									<input id="phone3" type="text" name="pnum3" style="width: 75px" />
+									<input type="button" value="중복체크" onclick="phoneCheck()" style="border:1px solid white;">
+                                </div>
+                                
+                                <div class="input-box">
+                                    <label>Birth</label><br>
+                                    <input class="input" type="date" name="birth" id="bday">
+                                </div>
 
-				<select class="gender" name="gender">
-					<option value="">성별 선택</option>
-					<option value="남">남</option>
-					<option value="여">여</option>
-					<option value="">미등록</option>
+                                <div class="input-box">
+                                    <label>Gender</label><br><br>
+                               		<select id="gender" class="gender" name="gender" style="width:350px">
+										<option value="">성별 선택</option>
+										<option value="남">남</option>
+										<option value="여">여</option>
+										<option value="">미등록</option>
+									</select>
+                                </div>
+                                <br>
 
-				</select>
-				
+                                <div class="button">
+                                    <button type="button" onclick="SignupCheck();" class="button">
+                                    SIGN UP</button><br><br>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
 
-				<button type="button" onclick="SignupCheck();" class="button">Sign up</button>
 
 
-			</form>
-		</div>
-	</div>
+
+                <div class="right" >
+                    <div class="headline2">
+                        <h1>공동 구매 플랫폼 ‘위플 마켓’</h1><br>
+                        <span>Welcome to weple market with shopping</span><br><br>
+                    </div>
+                    
+                    <div class="form_con2">
+                        <div class="log_form2">
+                            <h2></h2>
+                                <div class="button2">
+                                    <button class="button22" onclick="location.href='loginForm.do' ">LOGIN</button><br><br>
+                                    <a class="gohome" href="${pageContext.request.contextPath }/index.jsp">GO TO HOME</a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
 
 

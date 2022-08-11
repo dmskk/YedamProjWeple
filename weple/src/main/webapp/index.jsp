@@ -50,7 +50,7 @@ https://templatemo.com/tm-528-elegance
             <div class="container-fluid">
                 <div class="navbar">
                     <a href="#" id="logo" title="Elegance by TemplateMo">
-                        weple+ market
+                        weple market
                     </a>
                     
                     
@@ -64,11 +64,11 @@ https://templatemo.com/tm-528-elegance
                                 <ul class="navigation-menu nav navbar-nav navbars" id="nav">
                                     <li data-menuanchor="slide01" class="active"><a href="#slide01">Home</a></li>
                                     <li data-menuanchor="slide02"><a href="#slide02">Buy Area</a></li>
-                                    <li data-menuanchor="slide03"><a href="#slide03">Services</a></li>
+<!--                                     <li data-menuanchor="slide03"><a href="#slide03">Services</a></li>
                                     <li data-menuanchor="slide04"><a href="#slide04">My Skills</a></li>
                                     <li data-menuanchor="slide05"><a href="#slide05">My Work</a></li>
                                     <li data-menuanchor="slide06"><a href="#slide06">Testimonials</a></li>
-                                    <li data-menuanchor="slide07"><a href="#slide07">Contact Me</a></li>
+                                    <li data-menuanchor="slide07"><a href="#slide07">Contact Me</a></li> -->
 
                                 </ul>
                             </div>
@@ -99,7 +99,7 @@ https://templatemo.com/tm-528-elegance
                 <div class="section-inner">
                     <div class="welcome-box">
                         <span class="welcome-first animate" data-animate="fadeInUp">Hello, welcome to</span><br>
-                        <h1 class="welcome-title animate" data-animate="fadeInUp">weple+ market</h1><br>
+                        <h1 class="welcome-title animate" data-animate="fadeInUp">weple market</h1><br>
                         <button class="mainbt" onclick="location.href='main.do' ">GO TO SHOP</button>
                         <p></p>
                         <span class="welcome-first animate" data-animate="fadeInUp">공동 구매 플랫폼</span><br>
@@ -124,37 +124,37 @@ https://templatemo.com/tm-528-elegance
                                                 <p>Credits go to <strong>Unsplash</strong> and <strong>Pexels</strong> for photos and video used in this template. Vivamus tincidunt, augue rutrum convallis volutpat, massa lacus tempus leo.</p>
                                             </div>
                                             <div class="facts-list owl-carousel">
-                                                <div class="item animate" data-animate="fadeInUp" onclick="vwmoveTo2(127.914481915959 , 36.444267225588 , 1000000)">
+                                                <div class="item animate" data-animate="fadeInUp">
                                                     <div class="counter-box">
                                                        <span class="count-number">1212</span><br> All Area
                                                     </div>
                                                 </div>
-                                                <div class="item animate" data-animate="fadeInUp" onclick="vwmoveTo(126.978229106965 , 37.5665711673465 , 270)">
+                                                <div class="item animate" data-animate="fadeInUp">
                                                     <div class="counter-box">
                                                         <span class="count-number">631</span><br> Seoul
                                                     </div>
                                                 </div>
-                                                <div class="item animate" data-animate="fadeInUp" onclick="vwmoveTo(126.43377108701 , 37.468649718031 , 4000)">
+                                                <div class="item animate" data-animate="fadeInUp">
                                                     <div class="counter-box">
                                                         <span class="count-number">231</span><br> Incheon
                                                     </div>
                                                 </div>
-                                                <div class="item animate" data-animate="fadeInUp" onclick="vwmoveTo(127.013258919229  , 37.2985453646613 , 350)">
+                                                <div class="item animate" data-animate="fadeInUp">
                                                     <div class="counter-box">
                                                         <span class="count-number">532</span><br> GyeongGi
                                                     </div>
                                                 </div>
-                                                <div class="item animate" data-animate="fadeInUp" onclick="vwmoveTo(128.595334593028 , 35.8664916093874 , 280)">
+                                                <div class="item animate" data-animate="fadeInUp">
                                                     <div class="counter-box">
                                                         <span class="count-number">175</span><br> Deagu
                                                     </div>
                                                 </div>
-                                                <div class="item animate" data-animate="fadeInUp" onclick="vwmoveTo(129.350203249641 , 35.4737048996921 , 2000)">
+                                                <div class="item animate" data-animate="fadeInUp">
                                                     <div class="counter-box">
                                                         <span class="count-number">89</span><br> Ulsan
                                                     </div>
                                                 </div>
-                                                <div class="item animate" data-animate="fadeInUp"  onclick="vwmoveTo(126.909795765774 , 35.1645575235227 , 150)">
+                                                <div class="item animate" data-animate="fadeInUp">
                                                     <div class="counter-box">
                                                         <span class="count-number">78</span><br> GwanJu
                                                     </div>
@@ -176,7 +176,7 @@ https://templatemo.com/tm-528-elegance
                     </div>
                 </div>
             </div>
-
+<!-- 
             <div class="section animated-row" data-section="slide03">
                 <div class="section-inner">
                     <div class="row justify-content-center">
@@ -249,7 +249,7 @@ https://templatemo.com/tm-528-elegance
                     </div>
                 </div>
             </div>
-
+	
             <div class="section animated-row" data-section="slide04">
                 <div class="section-inner">
                     <div class="row justify-content-center">
@@ -524,7 +524,8 @@ https://templatemo.com/tm-528-elegance
                 </ul>
             </div>
         </div>
-    </div>  
+    </div> 
+     -->
 
     <script src="js/jquery.js"></script>
 
