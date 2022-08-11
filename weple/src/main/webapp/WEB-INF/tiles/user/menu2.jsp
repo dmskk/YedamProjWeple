@@ -14,7 +14,7 @@
 	</c:choose> </h4>
 
 	<ul>
-		<li class="bor18"><a href="orderHistoryMain.do"
+		<li class="bor18"><a href="orderHistoryMain.do?pageNum=1&amount=10"
 			class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 				주문내역 </a></li>
 

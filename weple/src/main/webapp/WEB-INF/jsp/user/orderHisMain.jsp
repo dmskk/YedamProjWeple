@@ -34,25 +34,19 @@
 		</c:forEach>
 	</table>
 </div>
+<div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
+	<c:if test="${pageInfo.prev }">
+		<a class="flex-c-m how-pagination1 trans-04 m-all-7"
+			href="orderHistoryMain.do?pageNum=${pageInfo.startPage - 1 }&amount=${pageInfo.cri.amount}">prev</a>
+	</c:if>
+	<c:forEach var="num" begin="${pageInfo.startPage }"
+		end="${pageInfo.endPage }">
+		<a class="flex-c-m how-pagination1 trans-04 m-all-7"
+			href="orderHistoryMain.do?pageNum=${num}&amount=${pageInfo.cri.amount}">${num }</a>
+	</c:forEach>
+	<c:if test="${pageInfo.next }">
+		<a class="flex-c-m how-pagination1 trans-04 m-all-7"
+			href="orderHistoryMain.do?pageNum=${pageInfo.endPage + 1 }&amount=${pageInfo.cri.amount}">next</a>
+	</c:if>
+</div>
 
-	<%-- <table>
-		<thead>
-			<tr>
-				<th>주문번호</th>
-				<th>주문날짜</th>
-				<th>총 가격</th>
-				<th>상세정보</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="orderList" items="${orderList }">
-				<tr>
-					<td>${orderList.orderNum }</td>
-					<td>${orderList.orderDate }</td>
-					<td>${orderList.orderPrice }</td>
-					<td><input type="button" class="orderDetailBtn" value="상세정보보기"
-						onclick="location.href = 'selectOrderDetail.do?orderNum=${orderList.orderNum }'"></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table> --%>
