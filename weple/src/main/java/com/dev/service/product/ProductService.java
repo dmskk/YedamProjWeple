@@ -17,6 +17,7 @@ import org.json.simple.parser.ParseException;
 import com.dev.dao.InventoryDAO;
 import com.dev.dao.ProductDAO;
 import com.dev.dao.UserDAO;
+import com.dev.vo.Criteria;
 import com.dev.vo.Inventory;
 import com.dev.vo.Product;
 
@@ -137,6 +138,9 @@ public class ProductService {
 	// 나의 찜 목록
 	public List<Product> getMyJjimProd(String userId) {
 		return pdao.getMyJjimList(userId);
+	}
+	public List<Product> jjimListPaging(Criteria cri, String userId){
+		return pdao.jjimListPaging(cri, userId);
 	}
 }
 	

@@ -14,7 +14,7 @@
 			class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 				배송지 관리 </a></li>
 
-		<li class="bor18"><a href="jjim.do"
+		<li class="bor18"><a href="jjim.do?pageNum=1&amount=10"
 			class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 				찜한 상품 </a></li>
 		<li class="bor18"><a href="cart.do"

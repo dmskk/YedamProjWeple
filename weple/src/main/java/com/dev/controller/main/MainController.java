@@ -24,6 +24,9 @@ public class MainController implements Controller {
 		ProductService ps = ProductService.getInstance();
 		
 		List<Product> shareProdList = ps.getSharedProd();
+		for(Product product : shareProdList) {
+			System.out.println(product);
+		}
 		
 		Set<Product> randomProdList = ps.getRandomProd();
 		

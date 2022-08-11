@@ -295,7 +295,7 @@ public class BoardDAO extends DAO {
 		connect();
 
 		try {
-			String sql = "select  board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt, img_url " +
+			String sql = "select board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt, img_url " +
 						 " from(select rownum rn, board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt, img_url " +
 	                     " from(select  board_type, prod_id, prod_name, writer, write_date, board_content, bno, cnt, img_url from v_bo_plus_nm where writer ='" + writer + "' and board_type=3 order by write_date desc ) "
 	                   + " where rownum <=?) where rn>=?";
@@ -341,9 +341,7 @@ public class BoardDAO extends DAO {
 		
 		try {
 			connect();
-			String sql = "select b.board_content, b.writer, b.write_date, b.bno, b.prod_id, b.cnt, p.img_url, p.prod_name, p.prod_price "
-					+ "from boards b, products p where b.board_type = 3 and b.prod_id = p.prod_id "
-					+ "order by cnt desc, write_date desc";
+			String sql = "select * from v_rt_reviw_list";
 			
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -367,6 +365,49 @@ public class BoardDAO extends DAO {
 			disconnect();
 		}
 		
+		return list;
+	}
+	
+public List<ProdReview> rtPagingList(Criteria cri){
+		
+		List<ProdReview> list = new ArrayList<>();
+		
+		connect();
+
+		try {
+			String sql = "select  board_content, writer, write_date, bno, prod_id, img_url, prod_name, prod_price " +
+						 " from(select rownum rn, board_content, writer, write_date, bno, prod_id, img_url, prod_name, prod_price " +
+	                     " from(select  board_content, writer, write_date, bno, prod_id, img_url, prod_name, prod_price from  v_rt_reviw_list order by cnt desc, write_date desc ) "
+	                   + " where rownum <=?) where rn>=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, cri.getAmount() * cri.getPageNum()); // 10 * 1;
+			pstmt.setInt(2, cri.getAmount() * (cri.getPageNum() - 1)); // 10
+
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				ProdReview pr = new ProdReview();
+				
+				pr.setBno(rs.getInt("bno"));
+				pr.setBoardContent(rs.getString("board_content"));
+				pr.setImgUrl(rs.getString("img_url"));
+				pr.setProdId(rs.getInt("prod_id"));
+				pr.setProdName(rs.getString("prod_name"));
+				pr.setProdPrice(rs.getInt("prod_price"));
+				pr.setWriteDate(rs.getString("write_date"));
+				pr.setWriter(rs.getString("writer"));
+				
+				list.add(pr);
+			
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
 		return list;
 	}
 	

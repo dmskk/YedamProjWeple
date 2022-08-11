@@ -7,9 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.servlet.http.HttpSession;
-
 import com.dev.common.DAO;
+import com.dev.vo.Criteria;
 import com.dev.vo.Product;
 
 public class ProductDAO extends DAO {
@@ -410,6 +409,51 @@ public class ProductDAO extends DAO {
 			connect();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Product product = new Product();
+				product.setProdId(rs.getInt("prod_id"));
+				product.setProdName(rs.getString("prod_name"));
+				product.setProdPrice(rs.getInt("prod_price"));
+				product.setCatgLevel1(rs.getInt("catg_level_1"));
+				product.setCatgLevel2(rs.getInt("catg_level_2"));
+				product.setCatgLevel3(rs.getInt("catg_level_3"));
+				product.setContent(rs.getString("content"));
+				product.setImgUrl(rs.getString("img_url"));
+				product.setIsShare(rs.getInt("is_share"));
+				product.setWeight(rs.getInt("weight"));
+				product.setOrigin(rs.getString("origin"));
+				product.setSharePeople(rs.getInt("share_people"));
+				product.setParticipatePeople(rs.getInt("participate_people"));
+				list.add(product);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	}
+	
+	public List<Product> jjimListPaging(Criteria cri, String userId){
+		List<Product> list = new ArrayList<>();
+		
+		String sql = "select  jjim, prod_id, img_url, prod_name, prod_price, weight, content, origin, is_share, share_people, catg_level_3, participate_people, catg_level_1, catg_level_2, user_id "
+				+ "		from(select rownum rn, jjim, prod_id, img_url, prod_name, prod_price, weight, content, origin, is_share, share_people, catg_level_3, participate_people, catg_level_1, catg_level_2, user_id "
+				+ "  		from(select  jjim, prod_id, img_url, prod_name, prod_price, weight, content, origin, is_share, share_people, catg_level_3, participate_people, catg_level_1, catg_level_2, user_id "
+				+ "    			from v_my_jjim where jjim = 1 and user_id=?) "
+				+ "      			where rownum <=?) where rn>=?";
+		
+		try {
+			connect();
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, cri.getAmount() * cri.getPageNum()); // 10 * 1;
+			pstmt.setInt(3, cri.getAmount() * (cri.getPageNum() - 1)); // 10
+			
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				Product product = new Product();
