@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dev.common.Utils;
 import com.dev.controller.Controller;
@@ -29,6 +30,8 @@ public class userDeleteController implements Controller {
 		
 		req.setAttribute("user", vo);
 		
+		HttpSession session = req.getSession();
+		session.invalidate();
 		
 		Utils.forward(req, resp, "main.do");
 	

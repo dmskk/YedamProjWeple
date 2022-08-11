@@ -290,5 +290,20 @@ public class BuyDAO extends DAO {
 				disconnect();
 			}
 		}
+
+		public void updateIsReview(int orderNum, int prodId) {
+			try {
+				connect();
+				String sql = "update buy_process set is_review = 0 where order_num=? and prod_id=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, orderNum);
+				pstmt.setInt(2, prodId);
+				pstmt.executeUpdate();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+		}
 		
 }

@@ -4,6 +4,7 @@ package com.dev.service.buy;
 import java.util.List;
 
 import com.dev.dao.BuyDAO;
+import com.dev.dao.ProductDAO;
 import com.dev.vo.Buy;
 import com.dev.vo.Cart;
 import com.dev.vo.OrderHisDetail;
@@ -13,6 +14,7 @@ public class BuyService {
 	// 싱글톤
 	private static BuyService buyService = null;
 	BuyDAO bDAO = BuyDAO.getInstance();
+	ProductDAO pDAO = new ProductDAO();
 	
 	
 	private BuyService() {
@@ -38,6 +40,7 @@ public class BuyService {
 	// buy_process에 insert하는 메소드(공동구매 여부에 따라서 0, 1)
 	public void insertIntoCart(Buy cartProduct) {
 		bDAO.insertIntoCart(cartProduct);
+		
 	}
 	
 	// 머지
@@ -49,6 +52,11 @@ public class BuyService {
 	// orderNum이랑 userId로 주문정보 조회하는 메소드(prodName, prodAmount, isShare, totalPrice)
 	public List<OrderHisDetail> showAllBuy(String userId, int orderNum) {
 		return bDAO.showAllBuy(userId, orderNum);
+	}
+	
+	// 리뷰 삭제했을 때 is_review  수정하기
+	public void updateIsReview (int orderNum, int prodId) {
+		bDAO.updateIsReview(orderNum, prodId);
 	}
 
 }

@@ -47,9 +47,17 @@ public class ReviewService {
 	/*public void updateReview(Board vo){
 		dao.updateReview(vo);
 	}*/
+	
+	//리뷰 삭제
 	public boolean deleteReview(ReviewInfo rvo) {
 		return dao.deleteReview(rvo);
 	}
+	
+	//orderNum 가져오기
+	public Board getReviewOrderNum(int bno) {
+		return dao.getReviewOrderNum(bno);
+	}
+	
 	/*public List<Board> myContent(){
 		return dao.myContent();
 	}*/

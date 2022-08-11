@@ -42,9 +42,6 @@ User userVO = service.getUserInfo(id);
 			<td>${vo2.addr} ${vo2.addr2} ${vo2.addrDetail}</td>
 			<td>${vo2.zipCode}</td>
 			<th>
-			<button onclick="return submit3(this.form)" style="background-color:grey;">
-			제외</button>
-			</th>
 		</tr>
 		</c:forEach>
 	</table>
@@ -110,7 +107,7 @@ User userVO = service.getUserInfo(id);
 				
 
 			<th>
-			<button onclick="return submit2(this.form)" style="background-color:grey;">
+			<button onclick="return submit2()" style="background-color:grey;">
 			기본주소 지정</button>
 			</th>
 			<th>
@@ -135,11 +132,11 @@ function submit3(frm) {
     return true; 
   }
 
-function submit2(frm) { 
-    frm.action='addressChange.do'; 
-    frm.submit(); 
+function submit2() { 
+    let addrName = event.target.parentElement.parentElement.firstElementChild.firstElementChild.value;
+    location.href='addressChange.do?addrName='+addrName;
 	alert("등록완료");
-    return true; 
+    return false;
   } 
 
 function deleteCheck(){

@@ -134,11 +134,11 @@ public class OrderDAO extends DAO {
 			Long record = 0L;
 			try {
 				connect();
-				String sql = "select * from v_order_record where = '" + userId + "'";
+				String sql = "select * from v_order_record where user_id = '" + userId + "'";
 				stmt = conn.createStatement();
 				rs = stmt.executeQuery(sql);
 				if(rs.next()) {
-					record = rs.getLong("order_price");
+					record = rs.getLong("oder_price");
 				}
 			} catch(SQLException e) {
 				e.printStackTrace();

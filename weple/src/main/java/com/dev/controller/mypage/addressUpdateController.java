@@ -41,7 +41,7 @@ public class addressUpdateController implements Controller {
 		req.setAttribute("user", vo);
 		
 		
-		Utils.forward(req, resp, "mypage.do");
+		Utils.forward(req, resp, "addressUpdateForm.do");
 	}
 
 }
