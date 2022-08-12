@@ -376,9 +376,9 @@ public List<ProdReview> rtPagingList(Criteria cri){
 		connect();
 
 		try {
-			String sql = "select  board_content, writer, write_date, bno, prod_id, img_url, prod_name, prod_price " +
-						 " from(select rownum rn, board_content, writer, write_date, bno, prod_id, img_url, prod_name, prod_price " +
-	                     " from(select  board_content, writer, write_date, bno, prod_id, img_url, prod_name, prod_price from  v_rt_reviw_list order by cnt desc, write_date desc ) "
+			String sql = "select  board_content, writer, write_date, bno, prod_id, img_url, prod_name, prod_price, cnt " +
+						 " from(select rownum rn, board_content, writer, write_date, bno, prod_id, img_url, prod_name, prod_price, cnt " +
+	                     " from(select  board_content, writer, write_date, bno, prod_id, img_url, prod_name, prod_price, cnt from  v_rt_reviw_list order by cnt desc, write_date desc ) "
 	                   + " where rownum <=?) where rn>=?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -400,7 +400,7 @@ public List<ProdReview> rtPagingList(Criteria cri){
 				pr.setProdPrice(rs.getInt("prod_price"));
 				pr.setWriteDate(rs.getString("write_date"));
 				pr.setWriter(rs.getString("writer"));
-				
+				pr.setCnt(rs.getInt("cnt"));			
 				list.add(pr);
 			
 			}
