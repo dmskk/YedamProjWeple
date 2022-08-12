@@ -40,8 +40,7 @@ public class addressDeleteController implements Controller {
 		
 		req.setAttribute("user", vo);
 		
-		
-		Utils.forward(req, resp, "addressUpdateForm.do");		
+			
 	}
 
 }

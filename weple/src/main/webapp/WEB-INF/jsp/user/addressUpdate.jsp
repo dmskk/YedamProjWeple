@@ -24,7 +24,7 @@ User userVO = service.getUserInfo(id);
 <div class="p-t-40">
 	<h5 class="mtext-113 cl2 p-b-12" style="font-weight: bold; padding-bottom: 5px;">기본 배송지</h5>
 	<p class="stext-107 cl6 p-b-40" style="padding-bottom: 5px;">한 건만 등록 가능합니다.</p>
-	<form action="addressListDefault.do">
+	<!-- <form action="addressListDefault.do"> -->
 		<table class="table-shopping-cart" >
 			<tr class="table_head">
 				<th>배송지명</th>
@@ -41,13 +41,13 @@ User userVO = service.getUserInfo(id);
 				</tr>
 			</c:forEach>
 		</table>
-	</form>
+	<!-- </form> -->
 
 
 </div>
 <div class="p-t-40">
 	<h5 class="mtext-113 cl2 p-b-12" style="font-weight: bold; padding-bottom: 5px;">배송지 추가</h5>
-	<form action="addressUpdate.do" id="updateForm" name="updateForm" onSubmit="return false;">
+	<!-- <form action="addressUpdate.do" id="updateForm" name="updateForm" onSubmit="return false;"> -->
 		<table class="table-shopping-cart" >
 			<tr class="table_head">
 				<th>배송지 이름</th>
@@ -80,7 +80,8 @@ User userVO = service.getUserInfo(id);
 					<input type="text" id="detailAddress" placeholder="상세주소" name="address2">
 				</td>
 				<td class="addr">
-					<input type="text" id="extraAddress" placeholder="참고주소" name="address3">
+					<input type="text" id="extraAddress" placeholder="참고주소" name="address3"
+					style="width: 130px;">
 				</td>
 				<td class="addr">
 					<button onclick="updateCheck()"
@@ -90,11 +91,11 @@ User userVO = service.getUserInfo(id);
 				</td>
 			</tr>
 		</table>
-	</form>
+	<!-- </form> -->
 </div>
 <div class="p-t-40">
 	<h5 class="mtext-113 cl2 p-b-12" style="font-weight: bold; padding-bottom: 5px;">배송지 목록</h5>
-	<form action="addressDelete.do" id="deleteForm" name="deleteForm">
+	<!-- <form action="addressDelete.do" id="deleteForm" name="deleteForm"> -->
 		<table class="table-shopping-cart" >
 			<tr class="table_head">
 				<th>배송지명</th>
@@ -113,51 +114,54 @@ User userVO = service.getUserInfo(id);
 					
 	
 				<th>
-				<button onclick="return submit2()" class="flex-c-m stext-101 cl0 bg3 bor13 hov-btn3 trans-04 pointer"
+				<button onclick="checkDefault()" class="flex-c-m stext-101 cl0 bg3 bor13 hov-btn3 trans-04 pointer"
 					style="padding: 2px 8px;">
 				기본 배송지 지정</button>
 				</th>
 				<th>
-				<input type='submit' value='삭제' class="flex-c-m stext-101cl2 bg8 bor13 hov-btn3 trans-04 pointer"
+				<button onclick="deleteAddr()" class="flex-c-m stext-101cl2 bg8 bor13 hov-btn3 trans-04 pointer"
 					style="padding: 2px 8px;">
+				삭제 </button>
 				</th>
 				
 		
 			</tr>
 			</c:forEach>
 		</table>
-	</form>
+	<!-- </form> -->
 </div>
 	<br>
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script>
-function submit3(frm) { 
-    frm.action='addressOut.do'; 
-    frm.submit(); 
-	alert("제외완료");
-    return true; 
-  }
 
-function submit2() { 
-    let addrName = event.target.parentElement.parentElement.firstElementChild.firstElementChild.value;
-    location.href='addressChange.do?addrName='+addrName;
-    swal({
-	  title: "기본 배송지가 변경되었습니다.",
-	  icon: "success",
-	  button: "닫기",
-	});
-    return false;
-  } 
-
-function deleteCheck(){
-	  deleteForm.submit();
-	  swal({
-		  title: "삭제가 완료되었습니다.",
-		  icon: "success",
-		  button: "닫기",
-		});
+function deleteAddr() {
+	let rowBox = event.target.parentElement.parentElement;
+	let adn = event.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.firstElementChild.value;
+	console.log(adn);
+	fetch("addressDelete.do", {
+		method: 'post',
+		headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		body: 'addr_name=' + adn
+	})
+	.then(function() {
+		rowBox.remove();
+	})
+	.catch(err => console.log(err));
 }
+
+function checkDefault() {
+	let adn = event.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.firstElementChild.value;
+	console.log(adn);
+	fetch("addressChange.do", {
+		method: 'post',
+		headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		body: 'addrName=' + adn
+	})
+	.then(window.location.reload())
+	.catch(err => console.log(err));
+}
+
 function updateCheck() {
 	  let pt = document.getElementById("postcode");
 	  let ad1 = document.getElementById("address");
@@ -165,24 +169,31 @@ function updateCheck() {
 	  let ad3 = document.getElementById("extraAddress");
 	  let adn = document.getElementById("addr_name");
 
-	  if (ad1.value == ""||ad2.value == ""||pt.value == ""||adn.value == "") {
-		  swal({
-			  title: "주소를 입력하세요.",
-			  icon: "info",
-			  button: "닫기",
-			});
-		    ad1.focus();
-		    return false;
-		} else {
-		  updateForm.submit();
-		  swal({
-			  title: "배송지 목록이 추가되었습니다.",
-			  icon: "success",
-			  button: "닫기",
-			});
-		  return false;
-		}
-		  
+	  if (adn.value == "") {
+		swal({
+		  title: "배송지 이름을 입력하세요.",
+		  icon: "info",
+		  button: "닫기",
+		});
+	    adn.focus();
+	    return false;
+	  } else if (ad1.value == ""||ad2.value == ""||pt.value == "") {
+		 swal({
+		  title: "정확한 주소를 입력하세요.",
+		  icon: "info",
+		  button: "닫기",
+		});
+		 return false;
+	  } else {
+		 fetch("addressUpdate.do", {
+			method: 'post',
+			headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			body: 'addr_name=' + adn.value + '&post=' + pt.value + '&address1=' + ad1.value + '&address2=' + ad2.value + '&address3=' + ad3.value 
+		})
+		.then(window.location.reload())
+		.catch(err => console.log(err));
+	  }
+	  
 	}
 
         
@@ -234,4 +245,4 @@ function updateCheck() {
                 }
             }).open();
         }
-    </script>
+</script>

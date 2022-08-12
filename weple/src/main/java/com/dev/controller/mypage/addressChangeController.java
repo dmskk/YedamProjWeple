@@ -44,10 +44,6 @@ public class addressChangeController implements Controller {
 		System.out.println("newad.addrName: " + newad.getAddrName());
 		System.out.println("newad.userId: " + newad.getUserId());
 		service.changeAddress(newad);
-		
-		
-		
-		Utils.forward(req, resp, "addressUpdateForm.do");		
-	}
 
+	}
 }

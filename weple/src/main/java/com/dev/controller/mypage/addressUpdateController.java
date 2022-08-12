@@ -37,11 +37,9 @@ public class addressUpdateController implements Controller {
 		
 		service.modifyAddress(vo);
 		
-		
 		req.setAttribute("user", vo);
 		
 		
-		Utils.forward(req, resp, "addressUpdateForm.do");
 	}
 
 }
