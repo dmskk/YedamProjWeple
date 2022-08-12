@@ -143,7 +143,7 @@
 									<i class="zmdi zmdi-shopping-cart"></i>
 								</a>
 		
-								<a href="jjim.do" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11" data-notify="0">
+								<a href="jjim.do?pageNum=1&amount=10" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11" data-notify="0">
 									<i class="zmdi zmdi-favorite-outline"></i>
 								</a>
 								<a href="mypage.do" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11" style="font-size: 14px;">My Page</a>
