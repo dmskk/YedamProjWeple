@@ -406,4 +406,31 @@ public class UserDAO extends DAO {
 			disconnect();
 		}
 	}
+	
+	
+	// 주소 검색
+	public Addr searchAddr(String id, String name) {
+		Addr addr = new Addr();
+		try {
+			connect();
+			String sql = "select * from addr where user_id=? and addr_name=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, name);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				addr.setAddr(rs.getString("addr"));
+				addr.setUserId(rs.getString("user_id"));
+				addr.setAddrName(rs.getString("addr_name"));
+				addr.setZipCode(rs.getInt("zip_code"));
+				addr.setAddr2(rs.getString("addr2"));
+				addr.setAddrDetail(rs.getString("addr_detail"));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return addr;
+	}
 }

@@ -33,10 +33,10 @@ User userVO = service.getUserInfo(id);
 			</tr>
 				
 			<c:forEach var="vo2" items="${list2}">
-				<tr class="table_head">
-					<td><input type="text" value="${vo2.addrName}"  name="addr_name" readonly></td>
-					<td>${vo2.addr} ${vo2.addr2} ${vo2.addrDetail}</td>
-					<td>${vo2.zipCode}</td>
+				<tr class="table_head" id="defaultAddr">
+					<td class="deName"><input type="text" value="${vo2.addrName}"  name="addr_name" readonly></td>
+					<td class="deAddr">${vo2.addr} ${vo2.addr2} ${vo2.addrDetail}</td>
+					<td class="dePost">${vo2.zipCode}</td>
 					<th>
 				</tr>
 			</c:forEach>
@@ -96,7 +96,7 @@ User userVO = service.getUserInfo(id);
 <div class="p-t-40">
 	<h5 class="mtext-113 cl2 p-b-12" style="font-weight: bold; padding-bottom: 5px;">배송지 목록</h5>
 	<!-- <form action="addressDelete.do" id="deleteForm" name="deleteForm"> -->
-		<table class="table-shopping-cart" >
+		<table class="table-shopping-cart" id="addrList">
 			<tr class="table_head">
 				<th>배송지명</th>
 				<th>배송지</th>
@@ -152,13 +152,24 @@ function deleteAddr() {
 
 function checkDefault() {
 	let adn = event.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.firstElementChild.value;
-	console.log(adn);
+	let adr = event.target.parentElement.previousElementSibling.previousElementSibling.innerText;
+	let post = event.target.parentElement.previousElementSibling.innerText;
+	
 	fetch("addressChange.do", {
 		method: 'post',
 		headers: {'Content-type': 'application/x-www-form-urlencoded'},
-		body: 'addrName=' + adn
+		body: 'addrName=' + adn + '&addr=' + adr + '&post=' + post
 	})
-	.then(window.location.reload())
+	.then((response) => response.json())
+	.then((result) => {
+		let name = result[0].addrName;
+		let addr = result[0].addr;
+		let post = result[0].post;
+		let box = document.getElementById("defaultAddr");
+		box.firstElementChild.firstElementChild.value = name;
+		box.firstElementChild.nextElementSibling.innerText = addr;
+		box.firstElementChild.nextElementSibling.nextElementSibling.innerText = post;
+	})
 	.catch(err => console.log(err));
 }
 

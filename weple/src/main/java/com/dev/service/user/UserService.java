@@ -70,6 +70,12 @@ public class UserService {
 		dao.deleteUser(id, pw);
 	}
 	
+	
+	//주소 검색
+	public Addr getAddr(String id, String name) {
+		return dao.searchAddr(id, name);
+	}
+	
 	/*
 	 * 직전 6개월 간 거래 실적 조회하고
 	 * 회원등급 변경하기
