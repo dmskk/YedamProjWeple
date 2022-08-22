@@ -170,12 +170,13 @@
 		$(document).on("click", ".how-itemcart1", function(event) {
 			var deleteBtn = $(event.target);
 			var prodId = deleteBtn.parent().children(".hidden").text();
+			var share = deleteBtn.parent().children(".hiddenIsShare").text();
 			console.log(prodId);
 			
 			fetch('deleteCart.do', {
 				method: 'post',
 				headers: {'Content-type': 'application/x-www-form-urlencoded'},
-				body: 'prodId='+prodId
+				body: 'prodId='+prodId+'&isShare='+share
 
 				})
 				.then(result => result.text())
