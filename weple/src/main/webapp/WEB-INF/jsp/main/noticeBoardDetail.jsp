@@ -56,7 +56,7 @@ td, th {
 				</tr>
 				<tbody>
 					<tr>
-						<td colspan="5">${notice.boardContent }<</td>
+						<td colspan="5">${notice.boardContent }</td>
 					</tr>
 				</tbody>
 				<c:choose>
